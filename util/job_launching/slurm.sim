@@ -4,16 +4,18 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --nodes=1
 #SBATCH --mem-per-cpu=REPLACE_MEM_USAGE
-#SBACTH --time=200:00:00,
-#SBATCH -p REPLACE_QUEUE_NAME
+#SBATCH --time=02:00:00
 #SBATCH --mail-type=END,FAIL
 #SBATCH --export=ALL
-#SBATCH --output=/tmp/REPLACE_NAME.o%j
-#SBATCH --error=/tmp/REPLACE_NAME.e%j
+#SBATCH --output=/scratch/gpfs/WENTZLAF/lm4677/REPLACE_NAME.o%j
+#SBATCH --error=/scratch/gpfs/WENTZLAF/lm4677/REPLACE_NAME.e%j
+
+# might later try mem-per-cpu=REPLACE_MEM_USAGE
+## #SBATCH -p REPLACE_QUEUE_NAME <-- maybe not needed
 
 copy_output() {
-    mv /tmp/REPLACE_NAME.e$SLURM_JOB_ID ./REPLACE_NAME.e$SLURM_JOB_ID
-    mv /tmp/REPLACE_NAME.o$SLURM_JOB_ID ./REPLACE_NAME.o$SLURM_JOB_ID
+    mv /scratch/gpfs/WENTZLAF/lm4677/REPLACE_NAME.e$SLURM_JOB_ID ./REPLACE_NAME.e$SLURM_JOB_ID
+    mv /scratch/gpfs/WENTZLAF/lm4677/REPLACE_NAME.o$SLURM_JOB_ID ./REPLACE_NAME.o$SLURM_JOB_ID
 }
 
 trap copy_output ERR

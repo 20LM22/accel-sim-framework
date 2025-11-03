@@ -9,6 +9,14 @@
 #       ...
 # If you have a bunch of random benchmarks in random places, then a "suite" can be just one benchmark
 
+mmul:
+  exec_dir: "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/bin/release/"
+  data_dirs: "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/tests/"
+  execs:
+    - accel-sim.out:
+        - args: ""
+          accel-sim-mem: 4G
+
 # Rodinia 2.0 implemented with a pass/fail functional test
 rodinia_2.0-ft:
     exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
