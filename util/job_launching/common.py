@@ -326,7 +326,7 @@ def parse_run_simulations_options():
     )
 
     (options, args) = parser.parse_args()
-    # Parser seems to leave some whitespace on the options, getting rid of it
+    # Parser seems to leave some whitespace on the options, getting rid of 
     if options.trace_dir != "":
         options.trace_dir = dir_option_test(
             options.trace_dir.strip(), "", this_directory

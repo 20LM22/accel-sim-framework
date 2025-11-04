@@ -42,6 +42,7 @@ import glob
 import datetime
 import yaml
 import common
+import json
 
 this_directory = os.path.dirname(os.path.realpath(__file__)) + "/"
 # This function will pull the SO name out of the shared object,
@@ -122,92 +123,100 @@ class ConfigurationSpec:
                 )
 
                 self.text_replace_torque_sim(
-                    full_data_dir,
-                    this_run_dir,
-                    benchmark,
-                    cuda_version,
-                    args,
-                    simdir,
-                    full_exec_dir,
-                    build_handle,
-                    mem_usage,
+                    full_data_dir, this_run_dir, benchmark, cuda_version, args, simdir, full_exec_dir, build_handle, mem_usage,
                 )
+                
                 self.append_gpgpusim_config(
                     benchmark, this_run_dir, appargs_run_subdir, self.config_file
                 )
 
                 # Submit the job to torque and dump the output to a file
                 if not options.no_launch:
+                    # torque_out_filename = this_directory + "torque_out"
+                    # TODO: might want to change this back later
                     torque_out_filename = this_directory + "torque_out.{0}.txt".format(
                         os.getpid()
                     )
                     torque_out_file = open(torque_out_filename, "w+")
                     saved_dir = os.getcwd()
                     os.chdir(this_run_dir)
-                    if (
-                        subprocess.call(
-                            [job_submit_call, os.path.join(this_run_dir, job_template)],
-                            stdout=torque_out_file,
-                        )
-                        < 0
-                    ):
-                        exit("Error Launching Job")
-                    else:
-                        # Parse the torque output for just the numeric ID
-                        torque_out_file.seek(0)
-                        torque_out = re.sub(
-                            r"[^\d]*(\d*).*", r"\1", torque_out_file.read().strip()
-                        )
-                        print(
-                            "Job "
-                            + torque_out
-                            + " queued ("
-                            + benchmark
-                            + "-"
-                            + self.benchmark_args_subdirs[args]
-                            + " "
-                            + self.run_subdir
-                            + ")"
-                        )
-                    torque_out_file.close()
-                    os.remove(torque_out_filename)
-                    os.chdir(saved_dir)
+                    print(f"slurm.sim: {os.path.join(this_run_dir, job_template)}")               
 
-                    if len(torque_out) > 0:
-                        # Dump the benchmark description to the logfile
-                        if not os.path.exists(this_directory + "logfiles/"):
-                            # In the very rare case that concurrent builds try to make the directory at the same time
-                            # (after the test to os.path.exists -- this has actually happened...)
-                            try:
-                                os.makedirs(this_directory + "logfiles/")
-                            except:
-                                pass
-                        now_time = datetime.datetime.now()
-                        day_string = now_time.strftime("%y.%m.%d-%A")
-                        time_string = now_time.strftime("%H:%M:%S")
-                        log_name = "sim_log.{0}".format(options.launch_name)
-                        logfile = open(
-                            this_directory
-                            + "logfiles/"
-                            + log_name
-                            + "."
-                            + day_string
-                            + ".txt",
-                            "a",
-                        )
-                        print(
-                            "%s %6s %-22s %-100s %-25s %s"
-                            % (
-                                time_string,
-                                torque_out,
-                                benchmark,
-                                self.benchmark_args_subdirs[args],
-                                self.run_subdir,
-                                build_handle,
-                            ),
-                            file=logfile,
-                        )
-                        logfile.close()
+                    # if (
+                    #     subprocess.call(
+                    #         [job_submit_call, os.path.join(this_run_dir, job_template)],
+                    #         stdout=torque_out_file,
+                    #     )
+                    #     < 0
+                    # ):
+                    #     exit("Error Launching Job")
+                    # else:
+                    #     # Parse the torque output for just the numeric ID
+                    #     torque_out_file.seek(0)
+                    #     torque_out = re.sub(
+                    #         r"[^\d]*(\d*).*", r"\1", torque_out_file.read().strip()
+                    #     )
+                    #     print(
+                    #         "Job "
+                    #         + torque_out
+                    #         + " queued ("
+                    #         + benchmark
+                    #         + "-"
+                    #         + self.benchmark_args_subdirs[args]
+                    #         + " "
+                    #         + self.run_subdir
+                    #         + ")"
+                    #     )
+                    torque_out_file.close()
+                    # os.remove(torque_out_filename)
+                    os.chdir(saved_dir)
+                                            
+                    export_dict = {
+                        "benchmark": benchmark,
+                        "self.benchmark_args_subdirs[args]": self.benchmark_args_subdirs[args],
+                        "self.run_subdir": self.run_subdir, 
+                        "build_handle": build_handle,
+                        "options.launch_name": options.launch_name
+                    }
+                    
+                    with open("export_dict.json", "w") as f: # fix this --> it should live with .sim, not in scratch space
+                        json.dump(export_dict, f)    
+
+                    # if len(torque_out) > 0:
+                    #     # Dump the benchmark description to the logfile
+                    #     if not os.path.exists(this_directory + "logfiles/"):
+                    #         # In the very rare case that concurrent builds try to make the directory at the same time
+                    #         # (after the test to os.path.exists -- this has actually happened...)
+                    #         try:
+                    #             os.makedirs(this_directory + "logfiles/")
+                    #         except:
+                    #             pass
+                    #     now_time = datetime.datetime.now()
+                    #     day_string = now_time.strftime("%y.%m.%d-%A")
+                    #     time_string = now_time.strftime("%H:%M:%S")
+                    #     log_name = "sim_log.{0}".format(options.launch_name)
+                    #     logfile = open(
+                    #         this_directory
+                    #         + "logfiles/"
+                    #         + log_name
+                    #         + "."
+                    #         + day_string
+                    #         + ".txt",
+                    #         "a",
+                    #     )
+                    #     print(
+                    #         "%s %6s %-22s %-100s %-25s %s"
+                    #         % (
+                    #             time_string,
+                    #             torque_out,
+                    #             benchmark,
+                    #             self.benchmark_args_subdirs[args],
+                    #             self.run_subdir,
+                    #             build_handle,
+                    #         ),
+                    #         file=logfile,
+                    #     )
+                    #     logfile.close()
             self.benchmark_args_subdirs.clear()
 
     #########################################################################################
@@ -370,6 +379,7 @@ class ConfigurationSpec:
                             "COMMAND_LINE":txt_args,
                             "MEM_USAGE": mem_usage
                             }
+        print(f'hello replacement dict: {replacement_dict}')
         torque_text = open(this_directory + job_template).read().strip()
         for entry in replacement_dict:
             torque_text = re.sub(
