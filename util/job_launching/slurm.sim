@@ -1,35 +1,47 @@
 #! /bin/bash
 
-#citing https://stackoverflow.com/questions/35800082/how-to-trap-err-when-using-set-e-in-bash
-#Setting -E alongside -e makes any trap on ERR inherited by shell funcs, command substitutions and commands executed in a subshell environment
-set -eE
+#SBATCH -J REPLACE_NAME
+#SBATCH --threads-per-core=1
+#SBATCH --cpus-per-task=1
+#SBATCH --nodes=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --time=00:05:00
+#SBATCH --mail-type=END,FAIL
+#SBATCH --export=ALL
+#SBATCH --output=REPLACE_SUBDIR/%x.o%j
+#SBATCH --error=REPLACE_SUBDIR/%x.e%j
+#SBATCH --chdir=REPLACE_SUBDIR
 
-if [ "$GPGPUSIM_SETUP_ENVIRONMENT_WAS_RUN" != "1" ]; then
-    export GPGPUSIM_ROOT=REPLACE_GPGPUSIM_ROOT
-    source $GPGPUSIM_ROOT/setup_environment
-else
-    echo "Skipping setup_environment - already set"
-fi
+apptainer exec /scratch/gpfs/WENTZLAF/lm4677/accel-sim-framework_ubuntu-24.04-cuda-12.8.sif \
+    bash -c "
+        source /scratch/gpfs/WENTZLAF/lm4677/venv/bin/activate && \
+        echo ${SLURM_JOB_ID}
+        
+        REPLACE_CUDA_FILE
 
-echo "doing: export -n PTX_SIM_USE_PTX_FILE"
-export -n PTX_SIM_USE_PTX_FILE
-echo "doing: export LD_LIBRARY_PATH=REPLACE_LIBPATH:$LD_LIBRARY_PATH"
-export LD_LIBRARY_PATH=REPLACE_LIBPATH:$LD_LIBRARY_PATH
-echo "doing: cd REPLACE_SUBDIR"
-cd REPLACE_SUBDIR
-echo "doing: export OPENCL_CURRENT_TEST_PATH=REPLACE_SUBDIR"
-export OPENCL_CURRENT_TEST_PATH=REPLACE_SUBDIR
-echo "doing: export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST"
-export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST
-echo "doing REPLACE_BENCHMARK_SPECIFIC_COMMAND"
-REPLACE_BENCHMARK_SPECIFIC_COMMAND
-echo "doing: export PATH=REPLACE_PATH"
-export PATH=REPLACE_PATH
+        export GPGPUSIM_ROOT=REPLACE_GPGPUSIM_ROOT
 
-# Uncomment to force blocking torque launches
-# this needs to be commented for concurrent kernel ptx mode
-echo "doing export CUDA_LAUNCH_BLOCKING=1"
-export CUDA_LAUNCH_BLOCKING=1
+        echo \"doing: export -n PTX_SIM_USE_PTX_FILE\"
+        export -n PTX_SIM_USE_PTX_FILE
 
-echo "doing: REPLACE_EXEC_NAME REPLACE_COMMAND_LINE"
-REPLACE_EXEC_NAME REPLACE_COMMAND_LINE
+        echo \"doing: cd REPLACE_SUBDIR\"
+        cd REPLACE_SUBDIR
+        echo \"doing: export OPENCL_CURRENT_TEST_PATH=REPLACE_SUBDIR\"
+        export OPENCL_CURRENT_TEST_PATH=REPLACE_SUBDIR
+        echo \"doing: export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST\"
+        export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST
+        echo \"doing REPLACE_BENCHMARK_SPECIFIC_COMMAND\"
+        REPLACE_BENCHMARK_SPECIFIC_COMMAND
+
+        # Uncomment to force blocking torque launches
+        # this needs to be commented for concurrent kernel ptx mode
+        echo \"doing export CUDA_LAUNCH_BLOCKING=1\"
+        export CUDA_LAUNCH_BLOCKING=1
+
+        echo \"doing: REPLACE_EXEC_NAME REPLACE_COMMAND_LINE\"
+        REPLACE_EXEC_NAME REPLACE_COMMAND_LINE >> ${SLURM_JOB_NAME}.o${SLURM_JOB_ID} 2>> ${SLURM_JOB_NAME}.e${SLURM_JOB_ID}
+    
+        # Now do get_stats.py since all relevant details are here
+        python3 /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py -l REPLACE_SUBDIR/${SLURM_JOB_NAME}.o${SLURM_JOB_ID}
+
+    "

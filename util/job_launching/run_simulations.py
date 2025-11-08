@@ -87,6 +87,7 @@ class ConfigurationSpec:
     def run(self, build_handle, benchmarks, run_directory, cuda_version, simdir):
         for dir_bench in benchmarks:
             exec_dir, data_dir, benchmark, self.command_line_args_list = dir_bench
+            # print(f'self.command line args list: {self.command_line_args_list}')
             full_exec_dir = ""  # For traces it is not necessary to have the apps built
             full_data_dir = ""
             if options.trace_dir == "":
@@ -106,10 +107,13 @@ class ConfigurationSpec:
 
             self.benchmark_args_subdirs = {}
             for argmap in self.command_line_args_list:
+                # print(f'argmap: {argmap}')
                 args = argmap["args"]
-                self.benchmark_args_subdirs[args] = common.get_argfoldername(args)
+                self.benchmark_args_subdirs[args] = common.get_argfoldername(args)           
 
             for argmap in self.command_line_args_list:
+                # TODO: adding in cuda file details
+                cuda_file = argmap["cuda-file"]
                 args = argmap["args"]
                 mem_usage = argmap["accel-sim-mem"]
                 appargs_run_subdir = os.path.join(
@@ -123,7 +127,7 @@ class ConfigurationSpec:
                 )
 
                 self.text_replace_torque_sim(
-                    full_data_dir, this_run_dir, benchmark, cuda_version, args, simdir, full_exec_dir, build_handle, mem_usage,
+                    full_data_dir, this_run_dir, benchmark, cuda_version, args, simdir, full_exec_dir, build_handle, mem_usage, cuda_file
                 )
                 
                 self.append_gpgpusim_config(
@@ -132,16 +136,25 @@ class ConfigurationSpec:
 
                 # Submit the job to torque and dump the output to a file
                 if not options.no_launch:
+                    
+                    # At this point the slurm.sim file is filled in and can be run
+                    
                     # torque_out_filename = this_directory + "torque_out"
                     # TODO: might want to change this back later
-                    torque_out_filename = this_directory + "torque_out.{0}.txt".format(
-                        os.getpid()
-                    )
-                    torque_out_file = open(torque_out_filename, "w+")
+                    # torque_out_filename = this_directory + "torque_out.{0}.txt".format(
+                    #     os.getpid()
+                    # )
+                    # torque_out_file = open(torque_out_filename, "w+")
                     saved_dir = os.getcwd()
                     os.chdir(this_run_dir)
+                    print(f'\n\n\n\n\n')
+                    print(f'this_run_dir: {this_run_dir}')
                     print(f"slurm.sim: {os.path.join(this_run_dir, job_template)}")               
 
+                    result = subprocess.run(
+                        ["sbatch", "--wait", os.path.join(this_run_dir, job_template)]
+                    )
+                    
                     # if (
                     #     subprocess.call(
                     #         [job_submit_call, os.path.join(this_run_dir, job_template)],
@@ -167,48 +180,46 @@ class ConfigurationSpec:
                     #         + self.run_subdir
                     #         + ")"
                     #     )
-                    torque_out_file.close()
+                    # torque_out_file.close()
                     # os.remove(torque_out_filename)
-                    os.chdir(saved_dir)
-                                            
-                    export_dict = {
-                        "benchmark": benchmark,
-                        "self.benchmark_args_subdirs[args]": self.benchmark_args_subdirs[args],
-                        "self.run_subdir": self.run_subdir, 
-                        "build_handle": build_handle,
-                        "options.launch_name": options.launch_name
-                    }
-                    
-                    with open("export_dict.json", "w") as f: # fix this --> it should live with .sim, not in scratch space
-                        json.dump(export_dict, f)    
+                    # os.chdir(saved_dir)
+                                                                
+                    # TODO: get job_number from submitting slurm job
+                    # torque_out_filename = this_directory + "job_number.txt"
+                    # # print(f'torque_out_filename: {torque_out_filename}')
+                    # torque_out_file = open(torque_out_filename, "r")
+                    # job_number = re.sub(r"[^\d]*(\d*).*", r"\1", torque_out_file.read().strip()) # torque out = job number  
 
-                    # if len(torque_out) > 0:
+                    # if len(job_number) > 0:
                     #     # Dump the benchmark description to the logfile
-                    #     if not os.path.exists(this_directory + "logfiles/"):
+                    #     if not os.path.exists(this_run_dir + "logfiles/"):
                     #         # In the very rare case that concurrent builds try to make the directory at the same time
                     #         # (after the test to os.path.exists -- this has actually happened...)
                     #         try:
-                    #             os.makedirs(this_directory + "logfiles/")
+                    #             os.makedirs(this_run_dir + "logfiles/")
                     #         except:
                     #             pass
                     #     now_time = datetime.datetime.now()
-                    #     day_string = now_time.strftime("%y.%m.%d-%A")
+                    #     # day_string = now_time.strftime("%y.%m.%d-%A")
                     #     time_string = now_time.strftime("%H:%M:%S")
                     #     log_name = "sim_log.{0}".format(options.launch_name)
+                        
+                    #     # print(f'here is where it is going: {this_directory}')
+                        
                     #     logfile = open(
-                    #         this_directory
+                    #         this_run_dir
                     #         + "logfiles/"
                     #         + log_name
                     #         + "."
-                    #         + day_string
+                    #         + job_number
                     #         + ".txt",
-                    #         "a",
+                    #         "w",
                     #     )
                     #     print(
                     #         "%s %6s %-22s %-100s %-25s %s"
                     #         % (
                     #             time_string,
-                    #             torque_out,
+                    #             job_number,
                     #             benchmark,
                     #             self.benchmark_args_subdirs[args],
                     #             self.run_subdir,
@@ -295,7 +306,7 @@ class ConfigurationSpec:
         if os.path.exists(os.path.join(this_directory, data_dir)):
             os.symlink(os.path.join(this_directory, data_dir), all_data_link)
 
-    # replaces all the "REAPLCE_*" strings in the .sim file
+    # replaces all the "REPLACE_*" strings in the .sim file
     def text_replace_torque_sim(
         self,
         full_run_dir,
@@ -307,7 +318,10 @@ class ConfigurationSpec:
         exec_dir,
         gpgpusim_build_handle,
         mem_usage,
+        cuda_file
     ):
+        # print(f'cuda file inside replace sim: {cuda_file}')
+       
         # get the pre-launch sh commands
         prelaunch_filename = full_run_dir + "benchmark_pre_launch_command_line.txt"
         benchmark_command_line = ""
@@ -333,7 +347,14 @@ class ConfigurationSpec:
                 + " "
                 + os.path.join(libpath, "accel-sim.out")
             )
-
+            
+        # TODO: replace cuda_file
+        
+        if cuda_file != "":
+            # print(f"are we getting here")
+            cuda_file = "nvcc -o " + exec_name + " " + cuda_file + " -arch=sm_80 -lcudart" # how to replace sm_80? make it based on config
+        
+        # print(f'now cuda is: {cuda_file}')
         # Test the existance of required env variables
         if str(os.getenv("GPGPUSIM_ROOT")) == "None":
             exit("\nERROR - Specify GPGPUSIM_ROOT prior to running this script")
@@ -377,9 +398,10 @@ class ConfigurationSpec:
                             "EXEC_NAME":exec_name,
                             "QUEUE_NAME":queue_name,
                             "COMMAND_LINE":txt_args,
-                            "MEM_USAGE": mem_usage
+                            "MEM_USAGE": mem_usage,
+                            "CUDA_FILE": cuda_file,
                             }
-        print(f'hello replacement dict: {replacement_dict}')
+        # print(f'hello replacement dict: {replacement_dict}')
         torque_text = open(this_directory + job_template).read().strip()
         for entry in replacement_dict:
             torque_text = re.sub(
@@ -491,6 +513,7 @@ if not os.path.exists(os.path.join(running_sim_dir, os.path.basename(simulator_p
 options.simulator_dir = running_sim_dir
 
 common.load_defined_yamls()
+# print(f"\n\n\noptions: {options}\n\n\n")
 
 # Test for the existance of a cluster management system
 job_submit_call = None
@@ -537,7 +560,9 @@ if not any(
     )
 
 benchmarks = []
+# print(f'options.benchmark_list.split(","): {options.benchmark_list.split(",")}')
 benchmarks = common.gen_apps_from_suite_list(options.benchmark_list.split(","))
+# print(f'HELLO OOOOO benchmarks: {benchmarks}')
 
 cfgs = common.gen_configs_from_list(options.configs_list.split(","))
 configurations = []

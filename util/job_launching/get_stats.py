@@ -53,7 +53,6 @@ help_str = (
     + " \n3) Specify a list of configs -C and benchmarks -B suite names you want data for."
 )
 
-
 parser = OptionParser(usage=help_str)
 parser.add_option(
     "-l",
@@ -150,7 +149,6 @@ options.sim_name = options.sim_name.strip()
 
 common.load_defined_yamls()
 
-
 cuda_version = common.get_cuda_version(this_directory)
 options.run_dir = common.dir_option_test(
     options.run_dir,
@@ -233,9 +231,9 @@ else:
             for f in os.listdir(logfiles_directory)
             if (re.match(r"sim_log.*\.latest", f))
         ]
-    else:
+    else: # TODO: this is where the logfile is loaded in
         parsed_logfiles.append(
-            common.file_option_test(options.logfile, "", this_directory)
+            common.file_option_test(options.logfile, "", '') # this_directory
         )
 
     print("Using logfiles " + str(parsed_logfiles), file=sys.stderr)
@@ -244,11 +242,11 @@ else:
         if not os.path.isfile(logfile):
             exit("Cannot open Logfile " + logfile)
 
-        with open(logfile) as f:
+        with open(logfile) as f: # TODO: load in the logfile
             added_cfgs = set()
             added_apps = set()
             for line in f:
-                jobtime, jobId, app, args, config, jobname = line.split()
+                jobtime, jobId, app, args, config, jobname = line.split()               
                 if config not in added_cfgs:
                     configs.append(config)
                     added_cfgs.add(config)
@@ -259,6 +257,13 @@ else:
                     exes_and_args.append(exe_and_args)
                     added_apps.add(app_and_args)
                 specific_jobIds[config + app_and_args] = (jobId, jobname)
+
+# TODO: left off here
+
+print(f'configs: {configs}')
+print(f'apps and args: {apps_and_args}')
+print(f'exe and args: {exe_and_args}')
+print(f'specific jobids: {specific_jobIds}')
 
 all_named_kernels = {}
 for idx, app_and_args in enumerate(apps_and_args):
@@ -273,25 +278,25 @@ for idx, app_and_args in enumerate(apps_and_args):
             )
             continue
 
-        if config + app_and_args in specific_jobIds:
-            jobId, jobname = specific_jobIds[config + app_and_args]
-            torque_submname = re.sub(
-                r".*\.([^\s]*-commit-.*-commit-.*)", r"\1", jobname
-            )
-            outfile_name = exes_and_args[idx].replace("/", "-") + "." + torque_submname
-            outfile_name = outfile_name[:200]  # truncate excessively long file names
-            outfile = os.path.join(output_dir, outfile_name + "." + "o" + jobId)
+        # if config + app_and_args in specific_jobIds:
+        #     jobId, jobname = specific_jobIds[config + app_and_args]
+        #     torque_submname = re.sub(
+        #         r".*\.([^\s]*-commit-.*-commit-.*)", r"\1", jobname
+        #     )
+        #     outfile_name = exes_and_args[idx].replace("/", "-") + "." + torque_submname
+        #     outfile_name = outfile_name[:200]  # truncate excessively long file names
+        #     outfile = os.path.join(output_dir, outfile_name + "." + "o" + jobId)
 
-        else:
-            all_outfiles = [
-                os.path.join(output_dir, f)
-                for f in os.listdir(output_dir)
-                if (re.match(r".*\.o[0-9]+", f))
-            ]
-            if len(all_outfiles) != 0:
-                outfile = max(all_outfiles, key=os.path.getmtime)
-            else:
-                continue
+        # else:
+        #     all_outfiles = [
+        #         os.path.join(output_dir, f)
+        #         for f in os.listdir(output_dir)
+        #         if (re.match(r".*\.o[0-9]+", f))
+        #     ]
+        #     if len(all_outfiles) != 0:
+        #         outfile = max(all_outfiles, key=os.path.getmtime)
+        #     else:
+        #         continue
 
         stat_found = set()
 
@@ -302,6 +307,9 @@ for idx, app_and_args in enumerate(apps_and_args):
         # Do a quick 100-line pass to get the GPGPU-Sim Version number
         MAX_LINES = 100
         count = 0
+        
+        print(f'the output file it reads: {outfile}')
+        
         f = open(outfile)
         for line in f:
             count += 1
@@ -319,6 +327,8 @@ for idx, app_and_args in enumerate(apps_and_args):
                     "all_kernels" + app_and_args + config + "Accel-Sim-build"
                 ] = accelsim_build_match.group(1)
         f.close()
+        
+        print(f'stat map: {stat_map}')
 
         # Do a quick 10000-line reverse pass to make sure the simualtion thread finished
         SIM_EXIT_STRING = "GPGPU-Sim: \*\*\* exit detected \*\*\*"
@@ -353,7 +363,9 @@ for idx, app_and_args in enumerate(apps_and_args):
             if not options.ignore_failures:
                 continue
 
+        print(f'options.per_kernel: {options.per_kernel}')
         if not options.per_kernel:
+            print(f'not options')
             if len(all_named_kernels[app_and_args]) == 0:
                 all_named_kernels[app_and_args].append("final_kernel")
             BYTES_TO_READ = int(250 * 1024 * 1024)
@@ -478,7 +490,8 @@ for idx, app_and_args in enumerate(apps_and_args):
 # to read from the beginning not the end
 # if options.per_kernel and not options.kernel_instance:
 #    stats_yaml['collect'].append("k-count")
-
+print(f'stat map: {stat_map}')
+print(f'stat found: {stat_found}')
 
 # Print any stats that do not make sense on a per-kernel basis ever (like GPGPU-Sim Build)
 all_kernels = {}

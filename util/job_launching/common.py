@@ -89,6 +89,7 @@ def load_defined_yamls():
         parse_app_definition_yaml(
             os.path.join(this_directory, "apps", def_yaml), defined_apps
         )
+    # print(f'\n\n\nHLELELELEL defined apps: {defined_apps}\n\n\n')
     define_yamls = glob.glob(os.path.join(this_directory, "configs/define-*.yml"))
     for def_yaml in define_yamls:
         parse_config_definition_yaml(
@@ -101,7 +102,9 @@ def load_defined_yamls():
 def parse_app_definition_yaml(def_yml, apps):
     benchmark_yaml = yaml.load(open(def_yml), Loader=yaml.FullLoader)
     for suite in benchmark_yaml:
+        # print(f"suite: {suite}")
         apps[suite] = []
+        # print(f'benchmark yaml suite execs: {benchmark_yaml[suite]["execs"]}')
         for exe in benchmark_yaml[suite]["execs"]:
             exe_name = list(exe.keys())[0]
             args_list = list(exe.values())[0]
@@ -128,6 +131,7 @@ def parse_app_definition_yaml(def_yml, apps):
                     args_list,
                 )
             )
+            # print(f'right now apps[suite] is: {apps[suite]}')
             apps[suite + ":" + exe_name] = []
             apps[suite + ":" + exe_name].append(
                 (
@@ -155,6 +159,7 @@ def parse_config_definition_yaml(def_yml, defined_baseconfigs, defined_xtracfgs)
 def gen_apps_from_suite_list(app_list):
     benchmarks = []
     for app in app_list:
+        # print(f'defined_apps: {defined_apps[app]}')
         benchmarks += defined_apps[app]
     return benchmarks
 

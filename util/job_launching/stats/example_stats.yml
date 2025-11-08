@@ -7,11 +7,13 @@
 
 # These stats are continuously aggregated - even between kerenels and should
 # be diff'd to get the per-kernel stats
+
+# I can add more things here to print them out nicely
 collect_aggregate:
     - 'gpu_tot_sim_insn\s*=\s*(.*)'
     - 'gpgpu_simulation_time\s*=.*\(([0-9]+) sec\).*'
     - 'gpu_tot_sim_cycle\s*=\s*(.*)'
-    - '\s+L2_cache_stats_breakdown\[GLOBAL_ACC_R\]\[HIT\]\s*=\s*(.*)'
+    - '\s+L2_cache_stats_breakdown\[GLOBAL_ACC_R\]\[HIT\]\s*=\s*(.*)' # would match something like: L2_cache_stats_breakdown[GLOBAL_ACC_R][HIT] =  #
     - '\s+L2_cache_stats_breakdown\[GLOBAL_ACC_R\]\[TOTAL_ACCESS\]\s*=\s*(.*)'
     - '\s+L2_cache_stats_breakdown\[GLOBAL_ACC_W\]\[HIT\]\s*=\s*(.*)'
     - '\s+L2_cache_stats_breakdown\[GLOBAL_ACC_W\]\[TOTAL_ACCESS\]\s*=\s*(.*)'
