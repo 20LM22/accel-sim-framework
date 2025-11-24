@@ -1,0 +1,1 @@
+ /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_64_many_smem_iter.ptx  | tee gpgpu-sim-out_`date '+%b_%d_%H:%M.%S'`.txt

@@ -1,0 +1,1 @@
+{"benchmark": "mmul9", "self.benchmark_args_subdirs[args]": "NO_ARGS", "self.run_subdir": "A100-PTX", "build_handle": "gpgpu-sim_git-commit-b18ee397_modified_0.0", "options.launch_name": "many_sims", "uuid_var": "bda47ae4-70e2-4d74-9fee-81cc17d3daea"}

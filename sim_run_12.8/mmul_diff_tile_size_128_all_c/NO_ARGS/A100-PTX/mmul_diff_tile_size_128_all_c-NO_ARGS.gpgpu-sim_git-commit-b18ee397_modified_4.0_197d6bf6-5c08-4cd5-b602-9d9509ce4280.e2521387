@@ -1,0 +1,9 @@
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_128_all_c.cu(87): warning #177-D: variable "actualThreads" was declared but never referenced
+    int actualThreads = (T > 32) ? 32 : T;
+        ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+Illegal option --
+Using logfiles ['/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_128_all_c/NO_ARGS/A100-PTX/logfiles/sim_log.increase_l2.mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_197d6bf6-5c08-4cd5-b602-9d9509ce4280.2521387.txt']
+Script exec time 0.12 seconds. 1 files and 184.201 KB parsed. 1.572 MB/s

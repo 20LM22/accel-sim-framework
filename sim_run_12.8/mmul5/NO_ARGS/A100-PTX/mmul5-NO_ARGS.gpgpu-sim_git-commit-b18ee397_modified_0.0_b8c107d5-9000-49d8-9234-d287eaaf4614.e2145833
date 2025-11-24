@@ -1,0 +1,6 @@
+Illegal option --
+Traceback (most recent call last):
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/log_output.py", line 7, in <module>
+    print(f'sys.argv[4]: {sys.argv[4]}')
+                          ~~~~~~~~^^^
+IndexError: list index out of range

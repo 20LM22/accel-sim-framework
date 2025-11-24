@@ -1,0 +1,6 @@
+Illegal option --
+
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:343: SyntaxWarning: invalid escape sequence '\*'
+  SIM_EXIT_STRING = "GPGPU-Sim: \*\*\* exit detected \*\*\*"
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:422: SyntaxWarning: invalid escape sequence '\*'
+  "GPGPU-Sim: \*\* break due to reaching the maximum cycles \(or instructions\) \*\*",

@@ -1,0 +1,3 @@
+Illegal option --
+mmul_diff_tile_size_64: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64.cu:98: void verify_result(std::vector<int>&, std::vector<int>&, std::vector<int>&): Assertion `tmp == c[i * problem_size_dim1 + j]' failed.
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64/NO_ARGS/A100-PTX/slurm.sim: line 30: 3399213 Aborted                 (core dumped) /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_64

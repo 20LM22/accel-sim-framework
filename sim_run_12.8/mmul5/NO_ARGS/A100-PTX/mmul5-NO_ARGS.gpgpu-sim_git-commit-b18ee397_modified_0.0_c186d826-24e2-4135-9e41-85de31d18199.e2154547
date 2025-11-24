@@ -1,0 +1,17 @@
+Illegal option --
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:318: SyntaxWarning: invalid escape sequence '\['
+  gpgpu_build_match = re.match(".*GPGPU-Sim.*\[build\s+(.*)\].*", line)
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:324: SyntaxWarning: invalid escape sequence '\['
+  accelsim_build_match = re.match("Accel-Sim.*\[build\s+(.*)\].*", line)
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:334: SyntaxWarning: invalid escape sequence '\*'
+  SIM_EXIT_STRING = "GPGPU-Sim: \*\*\* exit detected \*\*\*"
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:413: SyntaxWarning: invalid escape sequence '\*'
+  "GPGPU-Sim: \*\* break due to reaching the maximum cycles \(or instructions\) \*\*",
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:432: SyntaxWarning: invalid escape sequence '\s'
+  kernel_match = re.match("kernel_name\s+=\s+(.*)", line)
+Using logfiles ['/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/A100-PTX/logfiles/sim_log.get_stats_added.mmul5-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0_c186d826-24e2-4135-9e41-85de31d18199.2154547.txt']
+Traceback (most recent call last):
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py", line 303, in <module>
+    if not os.path.isfile(outfile):
+                          ^^^^^^^
+NameError: name 'outfile' is not defined

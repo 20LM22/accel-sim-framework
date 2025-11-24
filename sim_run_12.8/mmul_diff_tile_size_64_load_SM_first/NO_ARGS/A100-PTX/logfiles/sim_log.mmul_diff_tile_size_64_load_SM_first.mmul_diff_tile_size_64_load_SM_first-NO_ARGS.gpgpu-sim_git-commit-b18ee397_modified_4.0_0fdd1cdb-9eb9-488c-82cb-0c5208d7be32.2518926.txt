@@ -1,0 +1,1 @@
+20-04-41 2518926 mmul_diff_tile_size_64_load_SM_first NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_4.0 0fdd1cdb-9eb9-488c-82cb-0c5208d7be32

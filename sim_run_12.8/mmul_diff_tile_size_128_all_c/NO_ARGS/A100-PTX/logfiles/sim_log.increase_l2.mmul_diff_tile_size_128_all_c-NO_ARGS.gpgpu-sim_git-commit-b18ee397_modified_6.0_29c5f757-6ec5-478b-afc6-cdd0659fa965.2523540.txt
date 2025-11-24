@@ -1,0 +1,1 @@
+02-43-57 2523540 mmul_diff_tile_size_128_all_c NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_6.0 29c5f757-6ec5-478b-afc6-cdd0659fa965

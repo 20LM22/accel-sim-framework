@@ -1,0 +1,27 @@
+
+//
+//
+//
+//
+//
+//
+
+.version 8.7
+.target sm_80
+.address_size 64
+
+//
+
+.visible .entry _Z9matrixMulPKii(
+.param .u64 _Z9matrixMulPKii_param_0,
+.param .u32 _Z9matrixMulPKii_param_1
+)
+{
+
+
+
+bar.sync 0;
+ret;
+
+}
+

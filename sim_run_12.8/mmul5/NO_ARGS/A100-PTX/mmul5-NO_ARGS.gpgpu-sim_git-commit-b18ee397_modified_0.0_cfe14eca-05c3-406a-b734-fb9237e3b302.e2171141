@@ -1,0 +1,4 @@
+Illegal option --
+error: For sector cache, the simulator uses hard-coded SECTOR_SIZE and SECTOR_CHUNCK_SIZE. The line size must be product of both values.
+mmul5: gpu-cache.h:741: void cache_config::init(char*, FuncCache): Assertion `0' failed.
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/A100-PTX/slurm.sim: line 26: 1435063 Aborted                 (core dumped) /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul5

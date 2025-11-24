@@ -1,0 +1,1 @@
+00-50-37 2158681 mmul5                  NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_0.0 025ded11-22ed-45c1-acc4-346e17a3036c

@@ -1,0 +1,34 @@
+Illegal option --
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:318: SyntaxWarning: invalid escape sequence '\['
+  gpgpu_build_match = re.match(".*GPGPU-Sim.*\[build\s+(.*)\].*", line)
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:324: SyntaxWarning: invalid escape sequence '\['
+  accelsim_build_match = re.match("Accel-Sim.*\[build\s+(.*)\].*", line)
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:334: SyntaxWarning: invalid escape sequence '\*'
+  SIM_EXIT_STRING = "GPGPU-Sim: \*\*\* exit detected \*\*\*"
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:413: SyntaxWarning: invalid escape sequence '\*'
+  "GPGPU-Sim: \*\* break due to reaching the maximum cycles \(or instructions\) \*\*",
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:432: SyntaxWarning: invalid escape sequence '\s'
+  kernel_match = re.match("kernel_name\s+=\s+(.*)", line)
+Traceback (most recent call last):
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/common.py", line 208, in file_option_test
+    with open(name):
+         ^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/A100-PTX/logfiles/get_stats_added.mmul5-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0_c3ee4a87-deab-4187-b405-4efb20ee71b1.2154350.txt'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/common.py", line 213, in file_option_test
+    with open(name):
+         ^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/A100-PTX/logfiles/get_stats_added.mmul5-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0_c3ee4a87-deab-4187-b405-4efb20ee71b1.2154350.txt'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py", line 236, in <module>
+    common.file_option_test(options.logfile, "", '') # this_directory
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/common.py", line 216, in file_option_test
+    raise PathMissing("Error - cannot open file {0}".format(name))
+common.PathMissing: Error - cannot open file /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/A100-PTX/logfiles/get_stats_added.mmul5-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0_c3ee4a87-deab-4187-b405-4efb20ee71b1.2154350.txt

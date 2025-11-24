@@ -1,0 +1,1 @@
+{"benchmark": "bfs-rodinia-2.0-ft", "self.benchmark_args_subdirs[args]": "__data_graph4096_txt___data_graph4096_result_txt", "self.run_subdir": "GV100-PTX", "build_handle": "gpgpu-sim_git-commit-b18ee397_modified_0.0", "options.launch_name": "test_11_11", "uuid_var": "730eb29d-db78-47c4-870d-914e902ca4c0"}

@@ -1,0 +1,38 @@
+#! /bin/bash
+
+#citing https://stackoverflow.com/questions/35800082/how-to-trap-err-when-using-set-e-in-bash
+#Setting -E alongside -e makes any trap on ERR inherited by shell funcs, command substitutions and commands executed in a subshell environment
+# set -eE
+
+export GPGPUSIM_ROOT=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim
+source $GPGPUSIM_ROOT/setup_environment
+
+# if [ "$GPGPUSIM_SETUP_ENVIRONMENT_WAS_RUN" != "1" ]; then
+#     export GPGPUSIM_ROOT=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim
+#     source $GPGPUSIM_ROOT/setup_environment
+# else
+#     echo "Skipping setup_environment - already set"
+# fi
+
+echo "doing: export -n PTX_SIM_USE_PTX_FILE"
+export -n PTX_SIM_USE_PTX_FILE
+echo "doing: export LD_LIBRARY_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/gpgpu-sim-builds/gpgpu-sim_git-commit-b18ee397_modified_0.0:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/gpgpu-sim-builds/gpgpu-sim_git-commit-b18ee397_modified_0.0:$LD_LIBRARY_PATH
+echo "doing: cd /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/bfs-rodinia-2.0-ft/__data_graph4096_txt___data_graph4096_result_txt/QV100-PTX"
+cd /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/bfs-rodinia-2.0-ft/__data_graph4096_txt___data_graph4096_result_txt/QV100-PTX
+echo "doing: export OPENCL_CURRENT_TEST_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/bfs-rodinia-2.0-ft/__data_graph4096_txt___data_graph4096_result_txt/QV100-PTX"
+export OPENCL_CURRENT_TEST_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/bfs-rodinia-2.0-ft/__data_graph4096_txt___data_graph4096_result_txt/QV100-PTX
+echo "doing: export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST"
+export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST
+echo "doing "
+
+echo "doing: export PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim/bin:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/home/lm4677/.vscode-server/cli/servers/Stable-7d842fb85a0275a4a8e4d7e040d2625abbf7f084/server/bin/remote-cli:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/opt/rh/gcc-toolset-14/root/usr/bin:/home/lm4677/.local/bin:/home/lm4677/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/opt/dell/srvadmin/bin:/home/lm4677/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+export PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim/bin:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/home/lm4677/.vscode-server/cli/servers/Stable-7d842fb85a0275a4a8e4d7e040d2625abbf7f084/server/bin/remote-cli:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/opt/rh/gcc-toolset-14/root/usr/bin:/home/lm4677/.local/bin:/home/lm4677/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/opt/dell/srvadmin/bin:/home/lm4677/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand
+
+# Uncomment to force blocking torque launches
+# this needs to be commented for concurrent kernel ptx mode
+echo "doing export CUDA_LAUNCH_BLOCKING=1"
+export CUDA_LAUNCH_BLOCKING=1
+
+echo "doing:  /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/bfs-rodinia-2.0-ft ./data/graph4096.txt ./data/graph4096-result.txt"
+ /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/bfs-rodinia-2.0-ft ./data/graph4096.txt ./data/graph4096-result.txt

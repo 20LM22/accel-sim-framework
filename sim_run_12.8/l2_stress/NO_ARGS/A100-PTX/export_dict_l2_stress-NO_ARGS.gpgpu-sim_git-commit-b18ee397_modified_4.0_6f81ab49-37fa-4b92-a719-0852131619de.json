@@ -1,0 +1,1 @@
+{"benchmark": "l2_stress", "self.benchmark_args_subdirs[args]": "NO_ARGS", "self.run_subdir": "A100-PTX", "build_handle": "gpgpu-sim_git-commit-b18ee397_modified_4.0", "options.launch_name": "l2_stress", "uuid_var": "6f81ab49-37fa-4b92-a719-0852131619de"}

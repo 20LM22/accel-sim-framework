@@ -1,0 +1,1 @@
+{"benchmark": "mmul_diff_tile_size_256", "self.benchmark_args_subdirs[args]": "NO_ARGS", "self.run_subdir": "A100-PTX", "build_handle": "gpgpu-sim_git-commit-b18ee397_modified_4.0", "options.launch_name": "diff_tile_sizes_1_tile", "uuid_var": "3f5da2e0-d57d-4c66-8c40-3d9827e2990e"}

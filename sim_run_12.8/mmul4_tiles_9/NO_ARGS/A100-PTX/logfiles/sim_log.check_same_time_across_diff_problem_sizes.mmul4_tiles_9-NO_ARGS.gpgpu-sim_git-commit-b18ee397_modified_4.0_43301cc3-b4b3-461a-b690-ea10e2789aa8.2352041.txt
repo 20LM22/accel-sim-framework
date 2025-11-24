@@ -1,0 +1,1 @@
+17-54-52 2352041 mmul4_tiles_9          NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_4.0 43301cc3-b4b3-461a-b690-ea10e2789aa8

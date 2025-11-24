@@ -1,0 +1,1 @@
+ /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul  | tee gpgpu-sim-out_`date '+%b_%d_%H:%M.%S'`.txt

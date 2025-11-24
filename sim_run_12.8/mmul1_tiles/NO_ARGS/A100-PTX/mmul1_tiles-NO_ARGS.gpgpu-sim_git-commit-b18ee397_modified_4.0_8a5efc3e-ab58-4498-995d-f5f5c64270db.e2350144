@@ -1,0 +1,12 @@
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul1_tiles.cu(72): error: identifier "row" is undefined
+    c[row * T + col] = tmp;
+      ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul1_tiles.cu(72): error: identifier "col" is undefined
+    c[row * T + col] = tmp;
+                ^
+
+2 errors detected in the compilation of "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul1_tiles.cu".
+Illegal option --
+Using logfiles ['/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul1_tiles/NO_ARGS/A100-PTX/logfiles/sim_log.check_1x9_works.mmul1_tiles-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_8a5efc3e-ab58-4498-995d-f5f5c64270db.2350144.txt']
+Script exec time 0.09 seconds. 1 files and 206.667 KB parsed. 2.386 MB/s

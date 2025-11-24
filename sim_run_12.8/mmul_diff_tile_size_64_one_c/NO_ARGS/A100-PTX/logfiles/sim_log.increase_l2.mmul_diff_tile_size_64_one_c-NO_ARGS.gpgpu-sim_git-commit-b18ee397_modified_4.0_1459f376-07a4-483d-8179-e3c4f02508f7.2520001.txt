@@ -1,0 +1,1 @@
+21-48-10 2520001 mmul_diff_tile_size_64_one_c NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_4.0 1459f376-07a4-483d-8179-e3c4f02508f7

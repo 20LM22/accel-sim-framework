@@ -1,0 +1,2 @@
+Illegal option --
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_load_SM_first/NO_ARGS/A100-PTX/slurm.sim: line 30: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_64_load_SM_first: No such file or directory

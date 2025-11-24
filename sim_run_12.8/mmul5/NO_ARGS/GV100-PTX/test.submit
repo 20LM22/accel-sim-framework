@@ -1,0 +1,28 @@
+#! /bin/bash
+#SBATCH -J mmul5-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0_7d3cbe60-1bf5-4cfc-b620-01656df26741
+#SBATCH --threads-per-core=1
+#SBATCH --cpus-per-task=1
+#SBATCH --nodes=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --time=00:05:00
+#SBATCH --mail-type=END,FAIL
+#SBATCH --export=ALL
+#SBATCH --output=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/GV100-PTX/%x.o%j
+#SBATCH --error=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/GV100-PTX/%x.e%j
+#SBATCH --chdir=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/GV100-PTX
+
+apptainer exec /scratch/gpfs/WENTZLAF/lm4677/accel-sim-framework_ubuntu-24.04-cuda-12.8.sif \
+    bash -c "
+        source /scratch/gpfs/WENTZLAF/lm4677/venv/bin/activate && \
+        bash /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/GV100-PTX/slurm.sim
+    "
+
+# python3 /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/log_output.py
+# Make this a new file in the run dir too
+
+# Steps:
+# Make sure .bashrc has run
+# To get gpgpusim output do: 
+# sbatch /scratch/gpfs/WENTZLAF/lm4677/analytical-model/sim_run_12.8/mmul5/NO_ARGS/GV100-PTX/test.submit > /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/job_number.txt
+# When setting up new benchmark or new gpu, need to run "run_simulations.py" then adjust the config file and the test.submit file and potentially the define-all-apps.yml file
+# /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/run_simulations.py -B mmul -C GV100-PTX -N mmulTest

@@ -1,0 +1,78 @@
+GPGPU-Sim version 4.2.0 (build gpgpu-sim_git-commit-b18ee397-modified_615.0) configured with AccelWattch.
+setup_environment succeeded
+doing: export -n PTX_SIM_USE_PTX_FILE
+doing: cd /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_128_all_c/NO_ARGS/A100-PTX
+doing: export OPENCL_CURRENT_TEST_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_128_all_c/NO_ARGS/A100-PTX
+doing: export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST
+doing 
+doing export CUDA_LAUNCH_BLOCKING=1
+doing:  /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_128_all_c 
+check which version of the binary is running
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/sim_run_12.8/mmul_diff_tile_size_128_all_c/NO_ARGS/A100-PTX
+LS BEFORE RUNNING:
+total 889
+-rw------- 1 lm4677 wentzlaf      3 Nov 22 23:53 _app_cuda_version_1vEr8o
+-rw------- 1 lm4677 wentzlaf      3 Nov 23 00:51 _app_cuda_version_47AXdA
+-rw------- 1 lm4677 wentzlaf      3 Nov 23 00:47 _app_cuda_version_Eu96mb
+-rw------- 1 lm4677 wentzlaf      3 Nov 23 00:24 _app_cuda_version_O5tg8Z
+-rw------- 1 lm4677 wentzlaf      3 Nov 23 00:06 _app_cuda_version_Vxfjyx
+-rw------- 1 lm4677 wentzlaf      3 Nov 23 00:32 _app_cuda_version_eJ5Nxe
+-rw------- 1 lm4677 wentzlaf      3 Nov 22 23:48 _app_cuda_version_jcjfZc
+-rw------- 1 lm4677 wentzlaf      3 Nov 22 22:49 _app_cuda_version_lEjfry
+-rw------- 1 lm4677 wentzlaf      3 Nov 22 23:42 _app_cuda_version_msDPMh
+-rw------- 1 lm4677 wentzlaf      3 Nov 23 00:13 _app_cuda_version_nZjO0H
+-rw------- 1 lm4677 wentzlaf      3 Nov 22 23:14 _app_cuda_version_zpzFhB
+-rw------- 1 lm4677 wentzlaf     42 Nov 22 23:14 _cuobjdump_list_ptx_1ozGTo
+-rw------- 1 lm4677 wentzlaf     42 Nov 22 22:49 _cuobjdump_list_ptx_Ku50SK
+-rw------- 1 lm4677 wentzlaf     42 Nov 22 23:42 _cuobjdump_list_ptx_XRsjjB
+drwxr-sr-x 2 lm4677 wentzlaf   4096 Nov 22 22:49 checkpoint_files
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 22 23:14 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_197d6bf6-5c08-4cd5-b602-9d9509ce4280.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 22 23:42 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_389f7684-d071-4718-882b-485aa6489131.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 23 00:13 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_47040a2c-0736-4935-8ac5-97f7e53be68c.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 22 23:52 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_4b1bd11d-b4cb-4863-aa93-6705b662119b.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 23 00:05 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_77799a08-f289-441b-bbdf-d48c1b669671.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 23 01:04 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_823a0597-ee78-4208-8331-944e729a5e72.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 22 22:48 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_985d6f46-287f-4a0f-99c1-f603b0413694.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 23 00:50 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_a475838a-f220-4832-bdfa-dce36a6cdb7e.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 23 00:23 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_a838c254-a80e-46f8-8f91-0ff2397a0a79.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 23 00:47 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_af9cffac-e416-4843-a7ea-b183861aef33.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 22 22:48 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_b8d97778-cbda-4e27-a012-4c17c1cb3d46.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 23 01:07 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_be85f389-fd33-4cd9-8ee3-5bfdd7fd7008.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 22 23:48 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_c4eab582-35c1-49ad-8747-5de9080985e5.json
+-rw-r--r-- 1 lm4677 wentzlaf    277 Nov 23 00:32 export_dict_mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_ce1e71fa-75a7-4d3f-8434-75f7d329f3fc.json
+-rw-r--r-- 1 lm4677 wentzlaf   4366 Nov 22 23:42 gpgpu_inst_stats.txt
+-rw-r--r-- 1 lm4677 wentzlaf   5459 Nov 23 01:07 gpgpusim.config
+-rwxr--r-- 1 lm4677 wentzlaf    158 Nov 23 01:07 justrun.sh
+drwxr-sr-x 2 lm4677 wentzlaf   4096 Nov 22 23:42 logfiles
+-rw-r--r-- 1 lm4677 wentzlaf    710 Nov 22 23:15 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_197d6bf6-5c08-4cd5-b602-9d9509ce4280.e2521387
+-rw-r--r-- 1 lm4677 wentzlaf 190153 Nov 22 23:21 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_197d6bf6-5c08-4cd5-b602-9d9509ce4280.o2521387
+-rw-r--r-- 1 lm4677 wentzlaf    465 Nov 22 23:42 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_389f7684-d071-4718-882b-485aa6489131.e2521750
+-rw-r--r-- 1 lm4677 wentzlaf 190151 Nov 22 23:44 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_389f7684-d071-4718-882b-485aa6489131.o2521750
+-rw-r--r-- 1 lm4677 wentzlaf    682 Nov 23 00:14 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_47040a2c-0736-4935-8ac5-97f7e53be68c.e2521900
+-rw-r--r-- 1 lm4677 wentzlaf  25319 Nov 23 00:14 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_47040a2c-0736-4935-8ac5-97f7e53be68c.o2521900
+-rw-r--r-- 1 lm4677 wentzlaf    683 Nov 22 23:53 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_4b1bd11d-b4cb-4863-aa93-6705b662119b.e2521820
+-rw-r--r-- 1 lm4677 wentzlaf  25319 Nov 22 23:59 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_4b1bd11d-b4cb-4863-aa93-6705b662119b.o2521820
+-rw-r--r-- 1 lm4677 wentzlaf    682 Nov 23 00:07 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_77799a08-f289-441b-bbdf-d48c1b669671.e2521876
+-rw-r--r-- 1 lm4677 wentzlaf  25319 Nov 23 00:07 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_77799a08-f289-441b-bbdf-d48c1b669671.o2521876
+-rw-r--r-- 1 lm4677 wentzlaf     54 Nov 23 01:06 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_823a0597-ee78-4208-8331-944e729a5e72.e2522174
+-rw-r--r-- 1 lm4677 wentzlaf      0 Nov 23 01:06 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_823a0597-ee78-4208-8331-944e729a5e72.o2522174
+-rw-r--r-- 1 lm4677 wentzlaf    682 Nov 23 00:51 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_a475838a-f220-4832-bdfa-dce36a6cdb7e.e2522085
+-rw-r--r-- 1 lm4677 wentzlaf  25372 Nov 23 00:51 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_a475838a-f220-4832-bdfa-dce36a6cdb7e.o2522085
+-rw-r--r-- 1 lm4677 wentzlaf    682 Nov 23 00:25 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_a838c254-a80e-46f8-8f91-0ff2397a0a79.e2521954
+-rw-r--r-- 1 lm4677 wentzlaf  25319 Nov 23 00:25 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_a838c254-a80e-46f8-8f91-0ff2397a0a79.o2521954
+-rw-r--r-- 1 lm4677 wentzlaf    682 Nov 23 00:47 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_af9cffac-e416-4843-a7ea-b183861aef33.e2522083
+-rw-r--r-- 1 lm4677 wentzlaf  25319 Nov 23 00:47 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_af9cffac-e416-4843-a7ea-b183861aef33.o2522083
+-rw-r--r-- 1 lm4677 wentzlaf    710 Nov 22 22:49 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_b8d97778-cbda-4e27-a012-4c17c1cb3d46.e2521005
+-rw-r--r-- 1 lm4677 wentzlaf 209798 Nov 22 22:49 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_b8d97778-cbda-4e27-a012-4c17c1cb3d46.o2521005
+-rw-r--r-- 1 lm4677 wentzlaf   8057 Nov 23 01:07 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_be85f389-fd33-4cd9-8ee3-5bfdd7fd7008.e2522186
+-rw-r--r-- 1 lm4677 wentzlaf    869 Nov 23 01:07 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_be85f389-fd33-4cd9-8ee3-5bfdd7fd7008.o2522186
+-rw-r--r-- 1 lm4677 wentzlaf    370 Nov 22 23:48 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_c4eab582-35c1-49ad-8747-5de9080985e5.e2521810
+-rw-r--r-- 1 lm4677 wentzlaf  25319 Nov 22 23:48 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_c4eab582-35c1-49ad-8747-5de9080985e5.o2521810
+-rw-r--r-- 1 lm4677 wentzlaf    682 Nov 23 00:32 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_ce1e71fa-75a7-4d3f-8434-75f7d329f3fc.e2522035
+-rw-r--r-- 1 lm4677 wentzlaf  25319 Nov 23 00:32 mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_ce1e71fa-75a7-4d3f-8434-75f7d329f3fc.o2522035
+-rw-r--r-- 1 lm4677 wentzlaf   2002 Nov 22 23:42 mmul_diff_tile_size_128_all_c.1.sm_80.ptx
+-rw-r--r-- 1 lm4677 wentzlaf    362 Nov 22 23:42 mmul_diff_tile_size_128_all_c.1.sm_80.ptxas
+-rw-r--r-- 1 lm4677 wentzlaf   1972 Nov 23 01:07 slurm.sim
+drwxr-sr-x 2 lm4677 wentzlaf   4096 Nov 22 23:42 stats
+-rw-r--r-- 1 lm4677 wentzlaf   3714 Nov 23 01:07 test.submit
+==== TESTING CORE DUMP ====

@@ -1,0 +1,2 @@
+Illegal option --
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/A100-PTX/slurm.sim: line 26: 3519570 Aborted                 (core dumped) /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul5

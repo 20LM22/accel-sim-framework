@@ -1,0 +1,2 @@
+Illegal option --
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/sim_run_12.8/bfs-rodinia-2.0-ft/__data_graph4096_txt___data_graph4096_result_txt/A100-PTX/slurm.sim: line 38: 1519822 Aborted                 (core dumped) /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/bfs-rodinia-2.0-ft ./data/graph4096.txt ./data/graph4096-result.txt

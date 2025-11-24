@@ -1,0 +1,1 @@
+13-32-06 2377687 mmul_diff_tile_size_64 NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_4.0 6692a346-6a5e-43de-b952-2263ab4e4bd1

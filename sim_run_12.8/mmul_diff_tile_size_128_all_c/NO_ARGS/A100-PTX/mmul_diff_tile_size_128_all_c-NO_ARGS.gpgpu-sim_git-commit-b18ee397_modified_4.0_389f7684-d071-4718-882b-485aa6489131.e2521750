@@ -1,0 +1,4 @@
+nvcc fatal   : Don't know what to do with '–ptxas-options=-v'
+Illegal option --
+Using logfiles ['/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_128_all_c/NO_ARGS/A100-PTX/logfiles/sim_log.increase_l2.mmul_diff_tile_size_128_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_389f7684-d071-4718-882b-485aa6489131.2521750.txt']
+Script exec time 0.10 seconds. 1 files and 184.200 KB parsed. 1.820 MB/s

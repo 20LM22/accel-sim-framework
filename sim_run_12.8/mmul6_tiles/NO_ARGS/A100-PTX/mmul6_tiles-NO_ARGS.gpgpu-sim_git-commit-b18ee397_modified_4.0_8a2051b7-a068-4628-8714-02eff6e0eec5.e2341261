@@ -1,0 +1,2 @@
+Illegal option --
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul6_tiles/NO_ARGS/A100-PTX/slurm.sim: line 30: 646659 Segmentation fault      (core dumped) /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul6_tiles

@@ -1,0 +1,37 @@
+#! /bin/bash
+
+nvcc -o /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/bin/12.8/release/mmul5 /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul5.cu -arch=sm_80 -lcudart
+nvcc -o /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/bin/12.8/release/mmul10 /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul10.cu -arch=sm_80 -lcudart
+
+export GPGPUSIM_ROOT=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim
+source $GPGPUSIM_ROOT/setup_environment
+
+# export CUDA_INSTALL_PATH=/usr/local/cuda-12.8
+# source /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/setup_environment
+
+echo "doing: export -n PTX_SIM_USE_PTX_FILE"
+export -n PTX_SIM_USE_PTX_FILE
+# echo "doing: export LD_LIBRARY_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/gpgpu-sim-builds/gpgpu-sim_git-commit-b18ee397_modified_0.0:$LD_LIBRARY_PATH"
+# TODO: trying to set it explicitly
+# export LD_LIBRARY_PATH=/scratch/gpfs/WENTZLAF/lm4677/gpu-simulator/gpgpu-sim/lib/gcc-14.2.1/cuda-12080/release:$LD_LIBRARY_PATH
+
+# export LD_LIBRARY_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/gpgpu-sim-builds/gpgpu-sim_git-commit-b18ee397_modified_0.0:$LD_LIBRARY_PATH
+echo "doing: cd /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul/NO_ARGS/A100-PTX"
+cd /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul/NO_ARGS/A100-PTX
+echo "doing: export OPENCL_CURRENT_TEST_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul/NO_ARGS/A100-PTX"
+export OPENCL_CURRENT_TEST_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul/NO_ARGS/A100-PTX
+echo "doing: export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST"
+export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST
+echo "doing "
+
+# echo "doing: export PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim/bin:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/home/lm4677/.vscode-server/cli/servers/Stable-7d842fb85a0275a4a8e4d7e040d2625abbf7f084/server/bin/remote-cli:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/opt/rh/gcc-toolset-14/root/usr/bin:/home/lm4677/.local/bin:/home/lm4677/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/opt/dell/srvadmin/bin:/home/lm4677/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand"
+# export PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim/bin:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/home/lm4677/.vscode-server/cli/servers/Stable-7d842fb85a0275a4a8e4d7e040d2625abbf7f084/server/bin/remote-cli:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/home/lm4677/.local/bin:/home/lm4677/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/opt/dell/srvadmin/bin:/home/lm4677/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand
+
+# Uncomment to force blocking torque launches
+# this needs to be commented for concurrent kernel ptx mode
+echo "doing export CUDA_LAUNCH_BLOCKING=1"
+export CUDA_LAUNCH_BLOCKING=1
+
+echo "doing:  /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul "
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul5
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul10

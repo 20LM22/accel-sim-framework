@@ -1,0 +1,24 @@
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first.cu(62): warning #20096-D: address of a host variable "std::cout" cannot be directly taken in a device function
+        cout << "loading elements into shared memory";
+        ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first.cu(43): warning #550-D: variable "s_a" was set but never used
+    __attribute__((shared)) int s_a[32][32];
+                                ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first.cu(44): warning #550-D: variable "s_b" was set but never used
+    __attribute__((shared)) int s_b[32][32];
+                                ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first.cu(62): error: calling a __host__ function("std::basic_ostream<char, T1>  &  ::std::operator <<<    ::std::char_traits<char> > (    ::std::basic_ostream<char, T1>  &, const char *)") from a __global__ function("matrixMul") is not allowed
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first.cu(62): error: identifier "std::operator <<<    ::std::char_traits<char> > " is undefined in device code
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first.cu(62): error: identifier "std::cout" is undefined in device code
+
+3 errors detected in the compilation of "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first.cu".
+Illegal option --
+Using logfiles ['/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_load_SM_first/NO_ARGS/A100-PTX/logfiles/sim_log.mmul_diff_tile_size_64_load_SM_first.mmul_diff_tile_size_64_load_SM_first-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_e99f22a8-eae0-498b-a54b-49b52fd6d19a.2517064.txt']
+Script exec time 0.10 seconds. 1 files and 196.631 KB parsed. 1.981 MB/s

@@ -1,0 +1,8 @@
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64.cu(105): error: identifier "SHMEM_SIZE" is undefined
+    cout << "size of SHMEM_SIZE: " << sizeof(SHMEM_SIZE);
+                                             ^
+
+1 error detected in the compilation of "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64.cu".
+Illegal option --
+mmul_diff_tile_size_64: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64.cu:98: void verify_result(std::vector<int>&, std::vector<int>&, std::vector<int>&): Assertion `tmp == c[i * problem_size_dim1 + j]' failed.
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64/NO_ARGS/A100-PTX/slurm.sim: line 30: 1690022 Aborted                 (core dumped) /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_64

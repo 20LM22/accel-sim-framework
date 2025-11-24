@@ -1,0 +1,51 @@
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu(95): warning #61-D: integer operation result is out of range
+    size_t bytes = N * N * sizeof(int);
+                     ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu(98): warning #61-D: integer operation result is out of range
+    vector<int> h_a(N * N);
+                      ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu(99): warning #61-D: integer operation result is out of range
+    vector<int> h_b(N * N);
+                      ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu(100): warning #61-D: integer operation result is out of range
+    vector<int> h_c(N * N);
+                      ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu(95): warning #61-D: integer operation result is out of range
+    size_t bytes = N * N * sizeof(int);
+                     ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu(98): warning #61-D: integer operation result is out of range
+    vector<int> h_a(N * N);
+                      ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu(99): warning #61-D: integer operation result is out of range
+    vector<int> h_b(N * N);
+                      ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu(100): warning #61-D: integer operation result is out of range
+    vector<int> h_c(N * N);
+                      ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu: In function 'int main()':
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu:95:20: warning: integer overflow in expression of type 'int' results in '0' [-Woverflow]
+   95 |   size_t bytes = N * N * sizeof(int);
+      |                  ~~^~~
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu:98:26: warning: integer overflow in expression of type 'int' results in '0' [-Woverflow]
+   98 |   vector<int> h_a(N * N);
+      |                        ~~^  
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu:99:26: warning: integer overflow in expression of type 'int' results in '0' [-Woverflow]
+   99 |   vector<int> h_b(N * N);
+      |                        ~~^  
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul20.cu:100:26: warning: integer overflow in expression of type 'int' results in '0' [-Woverflow]
+  100 |   vector<int> h_c(N * N);
+      |                        ~~^  
+Illegal option --
+[2025-11-09T00:09:58.009] error: *** JOB 2157780 ON della-r3c4n6 CANCELLED AT 2025-11-09T00:09:58 DUE TO TIME LIMIT ***

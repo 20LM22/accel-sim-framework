@@ -1,0 +1,11 @@
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/l2_stress.cu(64): error: identifier "problem_size_dim1" is undefined
+    int BLOCKS = problem_size_dim1/T;
+                 ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/l2_stress.cu(64): error: identifier "T" is undefined
+    int BLOCKS = problem_size_dim1/T;
+                                   ^
+
+2 errors detected in the compilation of "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/l2_stress.cu".
+Illegal option --
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/l2_stress/NO_ARGS/A100-PTX/slurm.sim: line 30: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/l2_stress: No such file or directory

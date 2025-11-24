@@ -1,0 +1,4 @@
+Illegal option --
+tee: /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/A100-PTX/stats/stats.get_stats_added.mmul5-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0_bfc529e3-36e0-4a72-adea-4c072ca295c5.2157157.csv: No such file or directory
+Using logfiles ['/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/A100-PTX/logfiles/sim_log.get_stats_added.mmul5-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0_bfc529e3-36e0-4a72-adea-4c072ca295c5.2157157.txt']
+Script exec time 0.13 seconds. 1 files and 198.015 KB parsed. 1.525 MB/s

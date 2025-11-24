@@ -1,0 +1,2 @@
+mmul10: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul10.cu:88: void verify_result(std::vector<int>&, std::vector<int>&, std::vector<int>&): Assertion `tmp == c[i * N + j]' failed.
+/usr/bin/bash: line 28: 843987 Aborted                 (core dumped) /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul10

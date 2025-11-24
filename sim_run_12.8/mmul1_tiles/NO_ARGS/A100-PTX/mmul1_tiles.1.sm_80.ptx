@@ -1,0 +1,134 @@
+
+//
+//
+//
+//
+//
+//
+
+.version 8.7
+.target sm_80
+.address_size 64
+
+//
+//
+//
+
+.visible .entry _Z9matrixMulPKiS0_Pi(
+.param .u64 _Z9matrixMulPKiS0_Pi_param_0,
+.param .u64 _Z9matrixMulPKiS0_Pi_param_1,
+.param .u64 _Z9matrixMulPKiS0_Pi_param_2
+)
+{
+.reg .pred %p<2>;
+.reg .b32 %r<87>;
+.reg .b64 %rd<13>;
+//
+.shared .align 4 .b8 _ZZ9matrixMulPKiS0_PiE3s_a[1024];
+//
+.shared .align 4 .b8 _ZZ9matrixMulPKiS0_PiE3s_b[1024];
+
+ld.param.u64 %rd4, [_Z9matrixMulPKiS0_Pi_param_0];
+ld.param.u64 %rd5, [_Z9matrixMulPKiS0_Pi_param_1];
+ld.param.u64 %rd3, [_Z9matrixMulPKiS0_Pi_param_2];
+cvta.to.global.u64 %rd1, %rd5;
+cvta.to.global.u64 %rd2, %rd4;
+mov.u32 %r19, %ntid.y;
+mov.u32 %r20, %ctaid.y;
+mov.u32 %r21, %tid.y;
+mad.lo.s32 %r22, %r20, %r19, %r21;
+mov.u32 %r23, %ntid.x;
+mov.u32 %r24, %ctaid.x;
+mov.u32 %r25, %tid.x;
+mad.lo.s32 %r1, %r24, %r23, %r25;
+shl.b32 %r2, %r22, 4;
+shl.b32 %r26, %r21, 4;
+add.s32 %r27, %r26, %r25;
+shl.b32 %r28, %r27, 2;
+mov.u32 %r29, _ZZ9matrixMulPKiS0_PiE3s_a;
+add.s32 %r3, %r29, %r28;
+mov.u32 %r30, _ZZ9matrixMulPKiS0_PiE3s_b;
+add.s32 %r4, %r30, %r28;
+shl.b32 %r31, %r21, 6;
+add.s32 %r5, %r30, %r31;
+shl.b32 %r32, %r25, 2;
+add.s32 %r6, %r29, %r32;
+add.s32 %r84, %r25, %r2;
+add.s32 %r83, %r1, %r26;
+mov.u32 %r85, 0;
+mov.u32 %r86, %r85;
+
+$L__BB0_1:
+mul.wide.u32 %rd6, %r84, 4;
+add.s64 %rd7, %rd2, %rd6;
+ld.global.u32 %r33, [%rd7];
+st.shared.u32 [%r3], %r33;
+mul.wide.u32 %rd8, %r83, 4;
+add.s64 %rd9, %rd1, %rd8;
+ld.global.u32 %r34, [%rd9];
+st.shared.u32 [%r4], %r34;
+bar.sync 0;
+ld.shared.u32 %r35, [%r6];
+ld.shared.u32 %r36, [%r5];
+mad.lo.s32 %r37, %r35, %r36, %r86;
+ld.shared.u32 %r38, [%r6+64];
+ld.shared.u32 %r39, [%r5+4];
+mad.lo.s32 %r40, %r38, %r39, %r37;
+ld.shared.u32 %r41, [%r6+128];
+ld.shared.u32 %r42, [%r5+8];
+mad.lo.s32 %r43, %r41, %r42, %r40;
+ld.shared.u32 %r44, [%r6+192];
+ld.shared.u32 %r45, [%r5+12];
+mad.lo.s32 %r46, %r44, %r45, %r43;
+ld.shared.u32 %r47, [%r6+256];
+ld.shared.u32 %r48, [%r5+16];
+mad.lo.s32 %r49, %r47, %r48, %r46;
+ld.shared.u32 %r50, [%r6+320];
+ld.shared.u32 %r51, [%r5+20];
+mad.lo.s32 %r52, %r50, %r51, %r49;
+ld.shared.u32 %r53, [%r6+384];
+ld.shared.u32 %r54, [%r5+24];
+mad.lo.s32 %r55, %r53, %r54, %r52;
+ld.shared.u32 %r56, [%r6+448];
+ld.shared.u32 %r57, [%r5+28];
+mad.lo.s32 %r58, %r56, %r57, %r55;
+ld.shared.u32 %r59, [%r6+512];
+ld.shared.u32 %r60, [%r5+32];
+mad.lo.s32 %r61, %r59, %r60, %r58;
+ld.shared.u32 %r62, [%r6+576];
+ld.shared.u32 %r63, [%r5+36];
+mad.lo.s32 %r64, %r62, %r63, %r61;
+ld.shared.u32 %r65, [%r6+640];
+ld.shared.u32 %r66, [%r5+40];
+mad.lo.s32 %r67, %r65, %r66, %r64;
+ld.shared.u32 %r68, [%r6+704];
+ld.shared.u32 %r69, [%r5+44];
+mad.lo.s32 %r70, %r68, %r69, %r67;
+ld.shared.u32 %r71, [%r6+768];
+ld.shared.u32 %r72, [%r5+48];
+mad.lo.s32 %r73, %r71, %r72, %r70;
+ld.shared.u32 %r74, [%r6+832];
+ld.shared.u32 %r75, [%r5+52];
+mad.lo.s32 %r76, %r74, %r75, %r73;
+ld.shared.u32 %r77, [%r6+896];
+ld.shared.u32 %r78, [%r5+56];
+mad.lo.s32 %r79, %r77, %r78, %r76;
+ld.shared.u32 %r80, [%r6+960];
+ld.shared.u32 %r81, [%r5+60];
+mad.lo.s32 %r86, %r80, %r81, %r79;
+bar.sync 0;
+add.s32 %r84, %r84, 256;
+add.s32 %r83, %r83, 16;
+add.s32 %r85, %r85, 16;
+setp.lt.u32 %p1, %r85, 144;
+@%p1 bra $L__BB0_1;
+
+cvta.to.global.u64 %rd10, %rd3;
+add.s32 %r82, %r2, %r1;
+mul.wide.s32 %rd11, %r82, 4;
+add.s64 %rd12, %rd10, %rd11;
+st.global.u32 [%rd12], %r86;
+ret;
+
+}
+

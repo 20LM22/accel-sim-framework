@@ -1,0 +1,8 @@
+Input file: ./data/graph4096.txt
+Reading File
+Read File
+Copied Everything to GPU memory
+Kernel Executed 1 times
+Result stored in result.txt
+
+FAILED

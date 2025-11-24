@@ -1,0 +1,1 @@
+01-14-10 2158704 mmul8                  NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_0.0 3f4eefa1-b78f-423c-9667-c60b0a2c036c

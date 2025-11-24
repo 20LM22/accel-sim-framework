@@ -1,0 +1,1 @@
+01-37-06 2341256 mmul1_tiles            NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_4.0 95f81260-86b6-43e8-9186-754878c8c892

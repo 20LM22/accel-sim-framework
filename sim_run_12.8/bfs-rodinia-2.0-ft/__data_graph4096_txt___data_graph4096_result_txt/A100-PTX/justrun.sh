@@ -1,0 +1,1 @@
+ /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/bfs-rodinia-2.0-ft ./data/graph4096.txt ./data/graph4096-result.txt | tee gpgpu-sim-out_`date '+%b_%d_%H:%M.%S'`.txt

@@ -1,0 +1,29 @@
+#! /bin/bash
+
+nvcc -o  /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_128_all_c /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_128_all_c.cu -arch=sm_80 -lcudart
+
+export GPGPUSIM_ROOT=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim
+source $GPGPUSIM_ROOT/setup_environment
+
+echo "doing: export -n PTX_SIM_USE_PTX_FILE"
+export -n PTX_SIM_USE_PTX_FILE
+
+echo "doing: cd /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_128_all_c/NO_ARGS/A100-PTX"
+cd /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_128_all_c/NO_ARGS/A100-PTX
+echo "doing: export OPENCL_CURRENT_TEST_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_128_all_c/NO_ARGS/A100-PTX"
+export OPENCL_CURRENT_TEST_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_128_all_c/NO_ARGS/A100-PTX
+echo "doing: export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST"
+export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST
+echo "doing "
+
+
+# Uncomment to force blocking torque launches
+# this needs to be commented for concurrent kernel ptx mode
+echo "doing export CUDA_LAUNCH_BLOCKING=1"
+export CUDA_LAUNCH_BLOCKING=1
+
+echo "doing:  /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_128_all_c "
+
+echo "check which version of the binary is running"
+
+ /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_128_all_c 

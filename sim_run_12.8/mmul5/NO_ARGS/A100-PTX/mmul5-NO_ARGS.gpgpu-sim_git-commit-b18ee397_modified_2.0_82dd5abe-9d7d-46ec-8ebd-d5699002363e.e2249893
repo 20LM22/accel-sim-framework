@@ -1,0 +1,17 @@
+Illegal option --
+Using logfiles ['/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/A100-PTX/logfiles/sim_log.debug_global.mmul5-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_2.0_82dd5abe-9d7d-46ec-8ebd-d5699002363e.2249893.txt']
+Script exec time 0.25 seconds. 1 files and 22.398 MB parsed. 89.244 MB/s
+Illegal option --
+In file included from ../gpgpu-sim/shader.h:54,
+                 from cuda-sim.h:37,
+                 from cuda-sim.cc:33:
+../gpgpu-sim/gpu-cache.h: In constructor 'baseline_cache::baseline_cache(const char*, cache_config&, int, int, mem_fetch_interface*, mem_fetch_status, cache_gpu_level, gpgpu_sim*)':
+../gpgpu-sim/gpu-cache.h:1479:24: warning: 'baseline_cache::m_bandwidth_management' will be initialized after [-Wreorder]
+ 1479 |   bandwidth_management m_bandwidth_management;
+      |                        ^~~~~~~~~~~~~~~~~~~~~~
+../gpgpu-sim/gpu-cache.h:1399:19: warning:   'cache_gpu_level baseline_cache::m_level' [-Wreorder]
+ 1399 |   cache_gpu_level m_level;
+      |                   ^~~~~~~
+../gpgpu-sim/gpu-cache.h:1282:3: warning:   when initialized here [-Wreorder]
+ 1282 |   baseline_cache(const char *name, cache_config &config, int core_id,
+      |   ^~~~~~~~~~~~~~

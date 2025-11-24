@@ -1,0 +1,15 @@
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first_concurrent.cu(60): error: expression must be a modifiable lvalue
+        s_a[new_threadIdx_y * 64 + new_threadIdx_x] = a[row*problem_size_dim2 + threadIdx.x + i];
+        ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first_concurrent.cu(61): error: expression must be a modifiable lvalue
+        s_b[new_threadIdx_y * 64 + new_threadIdx_x] = b[(threadIdx.y + i)*problem_size_dim1 + col];
+        ^
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first_concurrent.cu(69): error: expression must have integral or unscoped enum type
+    c[threadIdx.y*64 + threadIdx.x] = s_a[threadIdx.x + threadIdx.y*64] + s_b[threadIdx.x + threadIdx.y*64];
+                                                                          ^
+
+3 errors detected in the compilation of "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first_concurrent.cu".
+Illegal option --
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_load_SM_first_concurrent/NO_ARGS/A100-PTX/slurm.sim: line 30: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_64_load_SM_first_concurrent: No such file or directory

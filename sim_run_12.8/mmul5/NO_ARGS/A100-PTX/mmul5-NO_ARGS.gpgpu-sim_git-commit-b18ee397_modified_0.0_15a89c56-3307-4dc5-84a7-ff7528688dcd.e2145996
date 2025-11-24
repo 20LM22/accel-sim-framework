@@ -1,0 +1,6 @@
+Illegal option --
+Traceback (most recent call last):
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/log_output.py", line 34, in <module>
+    now_time = datetime.datetime.now()
+               ^^^^^^^^
+NameError: name 'datetime' is not defined. Did you forget to import 'datetime'?

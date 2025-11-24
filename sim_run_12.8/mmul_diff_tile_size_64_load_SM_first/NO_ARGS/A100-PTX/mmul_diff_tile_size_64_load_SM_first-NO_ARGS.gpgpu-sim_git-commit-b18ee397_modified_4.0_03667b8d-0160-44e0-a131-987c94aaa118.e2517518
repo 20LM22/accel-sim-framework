@@ -1,0 +1,11 @@
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first.cu(43): warning #550-D: variable "s_a" was set but never used
+    __attribute__((shared)) int s_a[32][32];
+                                ^
+
+Remark: The warnings can be suppressed with "-diag-suppress <warning-number>"
+
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first.cu(44): warning #550-D: variable "s_b" was set but never used
+    __attribute__((shared)) int s_b[32][32];
+                                ^
+
+Illegal option --

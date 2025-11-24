@@ -1,0 +1,1 @@
+18-18-35 2176250 mmul8                  NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_0.0 96c17025-3728-456c-9fa4-27c5024fd845

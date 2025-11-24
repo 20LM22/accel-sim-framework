@@ -1,0 +1,3 @@
+Illegal option --
+Using logfiles ['/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_many_smem_iter/NO_ARGS/A100-PTX/logfiles/sim_log.increase_l2.mmul_diff_tile_size_64_many_smem_iter-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_edaf5df4-0626-4436-b94b-37e68f7c22e6.2520264.txt']
+Script exec time 0.09 seconds. 1 files and 203.659 KB parsed. 2.152 MB/s

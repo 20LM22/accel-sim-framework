@@ -1,0 +1,8 @@
+ptxas info    : 0 bytes gmem
+ptxas info    : Compiling entry function '_Z9matrixMulPKiS0_Pi' for 'sm_80'
+ptxas info    : Function properties for _Z9matrixMulPKiS0_Pi
+    0 bytes stack frame, 0 bytes spill stores, 0 bytes spill loads
+ptxas info    : Used 20 registers, used 1 barriers, 32768 bytes smem, 376 bytes cmem[0]
+ptxas info    : Compile time = 69.902 ms
+Illegal option --
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_128_all_c/NO_ARGS/A100-PTX/slurm.sim: line 30: 2152489 Aborted                 (core dumped) /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_128_all_c

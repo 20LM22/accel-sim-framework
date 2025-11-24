@@ -1,0 +1,18 @@
+mmul10: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul10.cu:88: void verify_result(std::vector<int>&, std::vector<int>&, std::vector<int>&): Assertion `tmp == c[i * N + j]' failed.
+/usr/bin/bash: line 26: 4155764 Aborted                 (core dumped) /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul10 >> mmul10-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0.o2139606 2>> mmul10-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0.e2139606
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:318: SyntaxWarning: invalid escape sequence '\['
+  gpgpu_build_match = re.match(".*GPGPU-Sim.*\[build\s+(.*)\].*", line)
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:324: SyntaxWarning: invalid escape sequence '\['
+  accelsim_build_match = re.match("Accel-Sim.*\[build\s+(.*)\].*", line)
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:334: SyntaxWarning: invalid escape sequence '\*'
+  SIM_EXIT_STRING = "GPGPU-Sim: \*\*\* exit detected \*\*\*"
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:413: SyntaxWarning: invalid escape sequence '\*'
+  "GPGPU-Sim: \*\* break due to reaching the maximum cycles \(or instructions\) \*\*",
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:432: SyntaxWarning: invalid escape sequence '\s'
+  kernel_match = re.match("kernel_name\s+=\s+(.*)", line)
+Using logfiles ['/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul10/NO_ARGS/GV100-PTX/mmul10-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0.o2139606']
+Traceback (most recent call last):
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py", line 249, in <module>
+    jobtime, jobId, app, args, config, jobname = line.split()               
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 6, got 1)

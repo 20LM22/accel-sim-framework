@@ -1,0 +1,88 @@
+
+//
+//
+//
+//
+//
+//
+
+.version 8.7
+.target sm_80
+.address_size 64
+
+//
+//
+//
+
+.visible .entry _Z9matrixMulPKiS0_Pi(
+.param .u64 _Z9matrixMulPKiS0_Pi_param_0,
+.param .u64 _Z9matrixMulPKiS0_Pi_param_1,
+.param .u64 _Z9matrixMulPKiS0_Pi_param_2
+)
+{
+.reg .b32 %r<33>;
+.reg .b64 %rd<11>;
+//
+.shared .align 4 .b8 _ZZ9matrixMulPKiS0_PiE3s_a[16384];
+//
+.shared .align 4 .b8 _ZZ9matrixMulPKiS0_PiE3s_b[16384];
+
+ld.param.u64 %rd1, [_Z9matrixMulPKiS0_Pi_param_0];
+ld.param.u64 %rd2, [_Z9matrixMulPKiS0_Pi_param_1];
+ld.param.u64 %rd3, [_Z9matrixMulPKiS0_Pi_param_2];
+cvta.to.global.u64 %rd4, %rd3;
+cvta.to.global.u64 %rd5, %rd2;
+cvta.to.global.u64 %rd6, %rd1;
+mov.u32 %r1, %tid.x;
+mov.u32 %r2, %tid.y;
+shl.b32 %r3, %r2, 6;
+add.s32 %r4, %r3, %r1;
+mul.wide.u32 %rd7, %r4, 4;
+add.s64 %rd8, %rd6, %rd7;
+ld.global.u32 %r5, [%rd8];
+shl.b32 %r6, %r1, 8;
+mov.u32 %r7, _ZZ9matrixMulPKiS0_PiE3s_a;
+add.s32 %r8, %r7, %r6;
+shl.b32 %r9, %r2, 2;
+add.s32 %r10, %r8, %r9;
+st.shared.u32 [%r10], %r5;
+ld.global.u32 %r11, [%rd8+128];
+st.shared.u32 [%r10+8192], %r11;
+ld.global.u32 %r12, [%rd8+8192];
+st.shared.u32 [%r10+128], %r12;
+ld.global.u32 %r13, [%rd8+8320];
+st.shared.u32 [%r10+8320], %r13;
+add.s64 %rd9, %rd5, %rd7;
+ld.global.u32 %r14, [%rd9];
+mov.u32 %r15, _ZZ9matrixMulPKiS0_PiE3s_b;
+add.s32 %r16, %r15, %r6;
+add.s32 %r17, %r16, %r9;
+st.shared.u32 [%r17], %r14;
+ld.global.u32 %r18, [%rd9+128];
+st.shared.u32 [%r17+8192], %r18;
+ld.global.u32 %r19, [%rd9+8192];
+st.shared.u32 [%r17+128], %r19;
+ld.global.u32 %r20, [%rd9+8320];
+st.shared.u32 [%r17+8320], %r20;
+bar.sync 0;
+ld.shared.u32 %r21, [%r10];
+ld.shared.u32 %r22, [%r17];
+add.s32 %r23, %r22, %r21;
+add.s64 %rd10, %rd4, %rd7;
+st.global.u32 [%rd10], %r23;
+ld.shared.u32 %r24, [%r10+8192];
+ld.shared.u32 %r25, [%r17+8192];
+add.s32 %r26, %r25, %r24;
+st.global.u32 [%rd10+128], %r26;
+ld.shared.u32 %r27, [%r10+128];
+ld.shared.u32 %r28, [%r17+128];
+add.s32 %r29, %r28, %r27;
+st.global.u32 [%rd10+8192], %r29;
+ld.shared.u32 %r30, [%r10+8320];
+ld.shared.u32 %r31, [%r17+8320];
+add.s32 %r32, %r31, %r30;
+st.global.u32 [%rd10+8320], %r32;
+ret;
+
+}
+

@@ -1,0 +1,19 @@
+Illegal option --
+Traceback (most recent call last):
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/log_output.py", line 42, in <module>
+    "%s %6s %-22s %-100s %-25s %s"
+TypeError: not all arguments converted during string formatting
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:327: SyntaxWarning: invalid escape sequence '\['
+  gpgpu_build_match = re.match(".*GPGPU-Sim.*\[build\s+(.*)\].*", line)
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:333: SyntaxWarning: invalid escape sequence '\['
+  accelsim_build_match = re.match("Accel-Sim.*\[build\s+(.*)\].*", line)
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:343: SyntaxWarning: invalid escape sequence '\*'
+  SIM_EXIT_STRING = "GPGPU-Sim: \*\*\* exit detected \*\*\*"
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py:422: SyntaxWarning: invalid escape sequence '\*'
+  "GPGPU-Sim: \*\* break due to reaching the maximum cycles \(or instructions\) \*\*",
+Using logfiles ['/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/A100-PTX/logfiles/sim_log.get_stats_added.mmul5-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0_62e393bb-d0db-4313-b1e6-a077ff49c834.2156878.txt']
+Traceback (most recent call last):
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py", line 266, in <module>
+    print(f'exe and args: {exe_and_args}')
+                           ^^^^^^^^^^^^
+NameError: name 'exe_and_args' is not defined. Did you mean: 'exes_and_args'?

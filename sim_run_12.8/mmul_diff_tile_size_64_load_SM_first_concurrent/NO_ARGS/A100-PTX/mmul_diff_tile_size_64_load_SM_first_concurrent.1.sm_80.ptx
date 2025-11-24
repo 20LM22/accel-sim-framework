@@ -1,0 +1,97 @@
+
+//
+//
+//
+//
+//
+//
+
+.version 8.7
+.target sm_80
+.address_size 64
+
+//
+//
+//
+
+.visible .entry _Z9matrixMulPKiS0_Pi(
+.param .u64 _Z9matrixMulPKiS0_Pi_param_0,
+.param .u64 _Z9matrixMulPKiS0_Pi_param_1,
+.param .u64 _Z9matrixMulPKiS0_Pi_param_2
+)
+{
+.reg .b32 %r<36>;
+.reg .b64 %rd<17>;
+//
+.shared .align 4 .b8 _ZZ9matrixMulPKiS0_PiE3s_a[16384];
+//
+.shared .align 4 .b8 _ZZ9matrixMulPKiS0_PiE3s_b[16384];
+
+ld.param.u64 %rd1, [_Z9matrixMulPKiS0_Pi_param_0];
+ld.param.u64 %rd2, [_Z9matrixMulPKiS0_Pi_param_1];
+ld.param.u64 %rd3, [_Z9matrixMulPKiS0_Pi_param_2];
+cvta.to.global.u64 %rd4, %rd2;
+cvta.to.global.u64 %rd5, %rd1;
+mov.u32 %r1, %tid.x;
+mov.u32 %r2, %tid.y;
+mov.u32 %r3, %ctaid.y;
+mov.u32 %r4, %ntid.y;
+mov.u32 %r5, %ctaid.x;
+mov.u32 %r6, %ntid.x;
+mad.lo.s32 %r7, %r3, %r4, %r2;
+mad.lo.s32 %r8, %r7, 576, %r1;
+mad.lo.s32 %r9, %r5, %r6, %r1;
+shl.b32 %r10, %r2, 6;
+add.s32 %r11, %r9, %r10;
+add.s32 %r12, %r11, 34816;
+add.s32 %r13, %r8, 544;
+mul.wide.u32 %rd6, %r13, 4;
+add.s64 %rd7, %rd5, %rd6;
+mul.wide.u32 %rd8, %r12, 4;
+add.s64 %rd9, %rd4, %rd8;
+shl.b32 %r14, %r1, 8;
+mov.u32 %r15, _ZZ9matrixMulPKiS0_PiE3s_a;
+add.s32 %r16, %r15, %r14;
+shl.b32 %r17, %r2, 2;
+add.s32 %r18, %r16, %r17;
+mov.u32 %r19, _ZZ9matrixMulPKiS0_PiE3s_b;
+add.s32 %r20, %r19, %r14;
+add.s32 %r21, %r20, %r17;
+ld.global.u32 %r22, [%rd7];
+ld.global.u32 %r23, [%rd9];
+st.shared.u32 [%r18], %r22;
+st.shared.u32 [%r21], %r23;
+bar.sync 0;
+add.s32 %r24, %r11, 34848;
+mul.wide.u32 %rd10, %r24, 4;
+add.s64 %rd11, %rd4, %rd10;
+ld.global.u32 %r25, [%rd7];
+ld.global.u32 %r26, [%rd11];
+st.shared.u32 [%r18+8192], %r25;
+st.shared.u32 [%r21+8192], %r26;
+bar.sync 0;
+add.s32 %r27, %r8, 18976;
+mul.wide.u32 %rd12, %r27, 4;
+add.s64 %rd13, %rd5, %rd12;
+ld.global.u32 %r28, [%rd13];
+ld.global.u32 %r29, [%rd9];
+st.shared.u32 [%r18+128], %r28;
+st.shared.u32 [%r21+128], %r29;
+bar.sync 0;
+ld.global.u32 %r30, [%rd13];
+ld.global.u32 %r31, [%rd11];
+st.shared.u32 [%r18+8320], %r30;
+st.shared.u32 [%r21+8320], %r31;
+bar.sync 0;
+cvta.to.global.u64 %rd14, %rd3;
+ld.shared.u32 %r32, [%r18];
+ld.shared.u32 %r33, [%r21];
+add.s32 %r34, %r33, %r32;
+add.s32 %r35, %r10, %r1;
+mul.wide.u32 %rd15, %r35, 4;
+add.s64 %rd16, %rd14, %rd15;
+st.global.u32 [%rd16], %r34;
+ret;
+
+}
+

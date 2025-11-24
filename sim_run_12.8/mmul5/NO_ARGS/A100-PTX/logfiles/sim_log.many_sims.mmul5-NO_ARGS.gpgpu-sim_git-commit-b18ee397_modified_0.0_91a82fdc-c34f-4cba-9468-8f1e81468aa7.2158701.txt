@@ -1,0 +1,1 @@
+01-05-01 2158701 mmul5                  NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_0.0 91a82fdc-c34f-4cba-9468-8f1e81468aa7

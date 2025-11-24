@@ -1,0 +1,7 @@
+/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_256.cu(105): error: identifier "SHMEM_SIZE" is undefined
+    cout << "size of SHMEM_SIZE: " << sizeof(SHMEM_SIZE);
+                                             ^
+
+1 error detected in the compilation of "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_256.cu".
+Illegal option --
+/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_256/NO_ARGS/A100-PTX/slurm.sim: line 30: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_256: No such file or directory

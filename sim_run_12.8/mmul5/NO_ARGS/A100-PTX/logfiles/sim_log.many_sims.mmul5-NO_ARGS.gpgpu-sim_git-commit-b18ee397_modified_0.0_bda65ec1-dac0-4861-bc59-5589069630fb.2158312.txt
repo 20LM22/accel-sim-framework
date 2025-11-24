@@ -1,0 +1,1 @@
+00-21-21 2158312 mmul5                  NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_0.0 bda65ec1-dac0-4861-bc59-5589069630fb

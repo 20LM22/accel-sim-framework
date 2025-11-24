@@ -1,0 +1,21 @@
+GPGPU-Sim version 4.2.0 (build gpgpu-sim_git-commit-b18ee397-modified_615.0) configured with AccelWattch.
+setup_environment succeeded
+doing: export -n PTX_SIM_USE_PTX_FILE
+doing: export LD_LIBRARY_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/gpgpu-sim-builds/gpgpu-sim_git-commit-b18ee397_modified_0.0:/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim/lib/gcc-13.3.0/cuda-12080/release:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/.singularity.d/libs
+doing: cd /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/bfs-rodinia-2.0-ft/__data_graph4096_txt___data_graph4096_result_txt/A100-PTX
+doing: export OPENCL_CURRENT_TEST_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/bfs-rodinia-2.0-ft/__data_graph4096_txt___data_graph4096_result_txt/A100-PTX
+doing: export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST
+doing 
+doing: export PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim/bin:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/home/lm4677/.vscode-server/cli/servers/Stable-7d842fb85a0275a4a8e4d7e040d2625abbf7f084/server/bin/remote-cli:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/usr/local/cuda-12.8/bin:/opt/rh/gcc-toolset-14/root/usr/bin:/home/lm4677/.local/bin:/home/lm4677/bin:/usr/share/Modules/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/opt/puppetlabs/bin:/opt/dell/srvadmin/bin:/home/lm4677/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand
+doing export CUDA_LAUNCH_BLOCKING=1
+doing:  /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/bfs-rodinia-2.0-ft ./data/graph4096.txt ./data/graph4096-result.txt
+self exe links to: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/bin/12.8/release/bfs-rodinia-2.0-ft
+self exe links to: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/bin/12.8/release/bfs-rodinia-2.0-ft
+12
+
+
+        *** GPGPU-Sim Simulator Version 4.2.0  [build gpgpu-sim_git-commit-b18ee397_modified_0.0] ***
+
+
+GPGPU-Sim PTX: simulation mode 0 (can change with PTX_SIM_MODE_FUNC environment variable:
+               1=functional simulation only, 0=detailed performance simulator)

@@ -1,0 +1,20 @@
+GPGPU-Sim version 4.2.0 (build gpgpu-sim_git-commit-b18ee397-modified_615.0) configured with AccelWattch.
+setup_environment succeeded
+doing: export -n PTX_SIM_USE_PTX_FILE
+doing: cd /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_all_c/NO_ARGS/A100-PTX
+doing: export OPENCL_CURRENT_TEST_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_all_c/NO_ARGS/A100-PTX
+doing: export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST
+doing 
+doing export CUDA_LAUNCH_BLOCKING=1
+doing:  /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul_diff_tile_size_64_all_c 
+check which version of the binary is running
+self exe links to: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/bin/12.8/release/mmul_diff_tile_size_64_all_c
+self exe links to: /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/bin/12.8/release/mmul_diff_tile_size_64_all_c
+12
+
+
+        *** GPGPU-Sim Simulator Version 4.2.0  [build gpgpu-sim_git-commit-b18ee397_modified_4.0] ***
+
+
+GPGPU-Sim PTX: simulation mode 0 (can change with PTX_SIM_MODE_FUNC environment variable:
+               1=functional simulation only, 0=detailed performance simulator)

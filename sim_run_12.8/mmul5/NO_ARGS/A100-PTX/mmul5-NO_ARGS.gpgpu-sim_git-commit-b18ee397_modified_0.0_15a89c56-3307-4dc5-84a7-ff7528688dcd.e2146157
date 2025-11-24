@@ -1,0 +1,6 @@
+Illegal option --
+Traceback (most recent call last):
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/log_output.py", line 34, in <module>
+    logfile = open(
+              ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul5/NO_ARGS/A100-PTX/logfiles/sim_log.Nov_8_v4.mmul5-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0_15a89c56-3307-4dc5-84a7-ff7528688dcd.txt'

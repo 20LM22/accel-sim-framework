@@ -1,0 +1,41 @@
+#! /bin/bash
+#SBATCH -J mmul_diff_tile_size_64_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_30a78070-b6ed-46c5-bb4d-1718c2b16e70
+#SBATCH --threads-per-core=1
+#SBATCH --cpus-per-task=1
+#SBATCH --nodes=1
+#SBATCH --mem-per-cpu=32G
+#SBATCH --time=01:00:00
+#SBATCH --mail-type=END,FAIL
+#SBATCH --export=ALL
+#SBATCH --output=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_all_c/NO_ARGS/A100-PTX/%x.o%j
+#SBATCH --error=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_all_c/NO_ARGS/A100-PTX/%x.e%j
+#SBATCH --chdir=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_all_c/NO_ARGS/A100-PTX
+
+apptainer exec /scratch/gpfs/WENTZLAF/lm4677/accel-sim-framework_ubuntu-24.04-cuda-12.8.sif \
+    bash -c "
+        source /scratch/gpfs/WENTZLAF/lm4677/venv/bin/activate && \
+        bash /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_all_c/NO_ARGS/A100-PTX/slurm.sim && \
+        python3 /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/log_output.py /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_all_c/NO_ARGS/A100-PTX export_dict_mmul_diff_tile_size_64_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_30a78070-b6ed-46c5-bb4d-1718c2b16e70.json mmul_diff_tile_size_64_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_30a78070-b6ed-46c5-bb4d-1718c2b16e70 ${SLURM_JOB_ID} && \
+        mkdir -p /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_all_c/NO_ARGS/A100-PTX/stats && \
+        python3 /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/get_stats.py -l /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_all_c/NO_ARGS/A100-PTX/logfiles/sim_log.increase_l2.mmul_diff_tile_size_64_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_30a78070-b6ed-46c5-bb4d-1718c2b16e70.${SLURM_JOB_ID}.txt | tee /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul_diff_tile_size_64_all_c/NO_ARGS/A100-PTX/stats/stats.increase_l2.mmul_diff_tile_size_64_all_c-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_4.0_30a78070-b6ed-46c5-bb4d-1718c2b16e70.${SLURM_JOB_ID}.csv
+    "
+# apptainer exec /scratch/gpfs/WENTZLAF/lm4677/accel-sim-framework_ubuntu-24.04-cuda-12.8.sif \
+#     bash -c "
+#         export GPGPUSIM_ROOT=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim && \
+#         source \$GPGPUSIM_ROOT/setup_environment && \
+#         cd /scratch/gpfs/WENTZLAF/lm4677/analytical-model/gpu-simulator/gpgpu-sim && \
+#         make
+#     "
+# Steps:
+# Make sure .bashrc has run
+# To get gpgpusim output do: 
+# sbatch /scratch/gpfs/WENTZLAF/lm4677/analytical-model/sim_run_12.8/mmul5/NO_ARGS/GV100-PTX/test.submit > /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/job_number.txt
+# When setting up new benchmark or new gpu, need to run "run_simulations.py" then adjust the config file and the test.submit file and potentially the define-all-apps.yml file
+# /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/run_simulations.py -B mmul -C GV100-PTX -N mmulTest
+
+# Thoughts:
+# I have A100 working now.
+# Ok so mmul5 and mmul10 are actually different, only some of the outputs are the same
+
+# I should set up a means of quickly comparing lots of different versions of mmul inputs
+# Afterwards we want to set up this whole thing to be more automated

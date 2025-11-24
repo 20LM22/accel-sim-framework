@@ -1,0 +1,6 @@
+Illegal option --
+Traceback (most recent call last):
+  File "/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/log_output.py", line 8, in <module>
+    torque_out_file = open(torque_out_filename, "r")
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/job_number.txt'

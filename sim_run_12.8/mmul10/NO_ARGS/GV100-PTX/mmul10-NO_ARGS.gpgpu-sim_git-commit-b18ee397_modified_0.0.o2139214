@@ -1,0 +1,8 @@
+2139214
+doing: export -n PTX_SIM_USE_PTX_FILE
+doing: cd /scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul10/NO_ARGS/GV100-PTX
+doing: export OPENCL_CURRENT_TEST_PATH=/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/../../sim_run_12.8/mmul10/NO_ARGS/GV100-PTX
+doing: export OPENCL_REMOTE_GPU_HOST=REPLACE_REMOTE_HOST
+doing 
+doing export CUDA_LAUNCH_BLOCKING=1
+doing:  /scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/..//bin/12.8/release/mmul10 

@@ -1,0 +1,1 @@
+{"benchmark": "mmul4_tiles", "self.benchmark_args_subdirs[args]": "NO_ARGS", "self.run_subdir": "A100-PTX", "build_handle": "gpgpu-sim_git-commit-b18ee397_modified_4.0", "options.launch_name": "check_1x9_works", "uuid_var": "65536a54-8187-45d2-853b-66265c2607de"}

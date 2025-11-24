@@ -1,0 +1,1 @@
+13-34-46 2377707 mmul_diff_tile_size_64 NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_4.0 bff80365-a212-46eb-8e52-4071fc249318

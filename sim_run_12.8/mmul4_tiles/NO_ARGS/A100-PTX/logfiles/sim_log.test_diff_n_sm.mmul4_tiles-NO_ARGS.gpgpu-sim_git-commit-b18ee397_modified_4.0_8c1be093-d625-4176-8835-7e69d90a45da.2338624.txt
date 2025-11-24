@@ -1,0 +1,1 @@
+22-30-55 2338624 mmul4_tiles            NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_4.0 8c1be093-d625-4176-8835-7e69d90a45da

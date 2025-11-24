@@ -1,0 +1,1 @@
+01-57-57 2158705 mmul9                  NO_ARGS                                                                                              A100-PTX                  gpgpu-sim_git-commit-b18ee397_modified_0.0 7d9034c5-3029-408f-a66e-a10b348eb797
