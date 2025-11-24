@@ -1,33 +1,30 @@
-import json, os, re, datetime
+import json, re, sys, os, datetime
 
-# get the name of the torque out file that run simulations would have produced
-this_directory = os.path.dirname(os.path.realpath(__file__)) + "/"
-torque_out_filename = this_directory + "job_number.txt"
-print(f'torque_out_filename: {torque_out_filename}')
+# TODO: put the name of the slurm job in the log file
 
-torque_out_file = open(torque_out_filename, "r")
-torque_out = re.sub(r"[^\d]*(\d*).*", r"\1", torque_out_file.read().strip())
-                    
-with open("/scratch/gpfs/WENTZLAF/lm4677/analytical-model/util/job_launching/export_dict.json") as f:
+job_number = sys.argv[4]
+        
+this_directory = sys.argv[1]               
+with open(os.path.join(this_directory, sys.argv[2])) as f:
     export_dict=json.load(f)
-                    
+             
 benchmark = export_dict['benchmark']
 self_benchmark_args_subdirs_args = export_dict['self.benchmark_args_subdirs[args]']
 self_run_subdir = export_dict['self.run_subdir']
 build_handle = export_dict['build_handle']
 options_launch_name = export_dict['options.launch_name']
-
-print(f'torque out: {torque_out}')
+uuid_var = export_dict['uuid_var']
                     
-if len(torque_out) > 0:
-    print('len torque out > 0')
-    print(f'this directory: {this_directory}')
+if len(job_number) > 0:
+    # print('len torque out > 0')
+    # print(f'this directory: {this_directory}')
     # Dump the benchmark description to the logfile
-    if not os.path.exists(this_directory + "logfiles/"):
+    
+    if not os.path.exists(os.path.join(this_directory, "logfiles")):
         # In the very rare case that concurrent builds try to make the directory at the same time
         # (after the test to os.path.exists -- this has actually happened...)
         try:
-            os.makedirs(this_directory + "logfiles/")
+            os.makedirs(os.path.join(this_directory, "logfiles"))
         except:
             pass
     now_time = datetime.datetime.now()
@@ -36,19 +33,21 @@ if len(torque_out) > 0:
     log_name = "sim_log.{0}".format(options_launch_name) # TODO: need "options.launch_name"
     
     # print(f'log name is: {log_name}')
+    job_name = sys.argv[3]
     
     logfile = open(
-        this_directory + "logfiles/" + log_name + "." + day_string + "." + time_string + ".txt", "w",
+        os.path.join(this_directory, 'logfiles', log_name + "." + job_name + "." + job_number + ".txt"), "w"
     )
     print(
-        "%s %6s %-22s %-100s %-25s %s"
+        "%s %6s %-22s %-100s %-25s %s %s"
         % (
             time_string,
-            torque_out,
+            job_number,
             benchmark, # TODO: need "benchmark"
             self_benchmark_args_subdirs_args, # TODO: need "self.benchmark_args_subdirs[args]"
             self_run_subdir, # TODO: need "run_subdir"
             build_handle, # TODO: need "build_handle"
+            uuid_var
         ),
         file=logfile,
     )

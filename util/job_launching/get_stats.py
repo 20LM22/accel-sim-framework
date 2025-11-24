@@ -246,7 +246,7 @@ else:
             added_cfgs = set()
             added_apps = set()
             for line in f:
-                jobtime, jobId, app, args, config, jobname = line.split()               
+                jobtime, jobId, app, args, config, jobname, uuid_var = line.split()               
                 if config not in added_cfgs:
                     configs.append(config)
                     added_cfgs.add(config)
@@ -256,14 +256,15 @@ else:
                     exe_and_args = os.path.join(os.path.basename(app), args)
                     exes_and_args.append(exe_and_args)
                     added_apps.add(app_and_args)
-                specific_jobIds[config + app_and_args] = (jobId, jobname)
+                full_job_name = jobname + "_" + uuid_var
+                specific_jobIds[config + app_and_args] = (jobId, full_job_name)
 
 # TODO: left off here
 
-print(f'configs: {configs}')
-print(f'apps and args: {apps_and_args}')
-print(f'exe and args: {exe_and_args}')
-print(f'specific jobids: {specific_jobIds}')
+# print(f'configs: {configs}')
+# print(f'apps and args: {apps_and_args}')
+# print(f'exe and args: {exe_and_args}')
+# print(f'specific jobids: {specific_jobIds}')
 
 all_named_kernels = {}
 for idx, app_and_args in enumerate(apps_and_args):
@@ -278,25 +279,33 @@ for idx, app_and_args in enumerate(apps_and_args):
             )
             continue
 
-        # if config + app_and_args in specific_jobIds:
-        #     jobId, jobname = specific_jobIds[config + app_and_args]
-        #     torque_submname = re.sub(
-        #         r".*\.([^\s]*-commit-.*-commit-.*)", r"\1", jobname
-        #     )
-        #     outfile_name = exes_and_args[idx].replace("/", "-") + "." + torque_submname
-        #     outfile_name = outfile_name[:200]  # truncate excessively long file names
-        #     outfile = os.path.join(output_dir, outfile_name + "." + "o" + jobId)
+        # print(f'config: {config}')
+        # print(f'app and args: {app_and_args}')
+        # print(f'specific job ids: {specific_jobIds}')
 
-        # else:
-        #     all_outfiles = [
-        #         os.path.join(output_dir, f)
-        #         for f in os.listdir(output_dir)
-        #         if (re.match(r".*\.o[0-9]+", f))
-        #     ]
-        #     if len(all_outfiles) != 0:
-        #         outfile = max(all_outfiles, key=os.path.getmtime)
-        #     else:
-        #         continue
+        if config + app_and_args in specific_jobIds:
+            # print("inside specific job ids")
+            jobId, jobname = specific_jobIds[config + app_and_args]
+            # print(f'jobname is: {jobname}')
+            torque_submname = re.sub(
+                r".*\.([^\s]*-commit-.*-commit-.*)", r"\1", jobname
+            )
+            outfile_name = exes_and_args[idx].replace("/", "-") + "." + torque_submname
+            outfile_name = outfile_name[:200]  # truncate excessively long file names
+            # "_" + uuid_var +
+            outfile = os.path.join(output_dir, outfile_name + "." + "o" + jobId)
+            # mmul5-NO_ARGS.gpgpu-sim_git-commit-b18ee397_modified_0.0_d8c93407-1f4f-4a76-b54a-a6e9f616a7c8.o2155583l
+        else:
+            # print("not inside specific job ids")
+            all_outfiles = [
+                os.path.join(output_dir, f)
+                for f in os.listdir(output_dir)
+                if (re.match(r".*\.o[0-9]+", f))
+            ]
+            if len(all_outfiles) != 0:
+                outfile = max(all_outfiles, key=os.path.getmtime)
+            else:
+                continue
 
         stat_found = set()
 
@@ -308,30 +317,30 @@ for idx, app_and_args in enumerate(apps_and_args):
         MAX_LINES = 100
         count = 0
         
-        print(f'the output file it reads: {outfile}')
+        # print(f'the output file it reads: {outfile}')
         
         f = open(outfile)
         for line in f:
             count += 1
             if count >= MAX_LINES:
                 break
-            gpgpu_build_match = re.match(".*GPGPU-Sim.*\[build\s+(.*)\].*", line)
+            gpgpu_build_match = re.match(r".*GPGPU-Sim.*\[build\s+(.*)\].*", line)
             if gpgpu_build_match:
                 stat_map[
                     "all_kernels" + app_and_args + config + "GPGPU-Sim-build"
                 ] = gpgpu_build_match.group(1)
                 break
-            accelsim_build_match = re.match("Accel-Sim.*\[build\s+(.*)\].*", line)
+            accelsim_build_match = re.match(r"Accel-Sim.*\[build\s+(.*)\].*", line)
             if accelsim_build_match:
                 stat_map[
                     "all_kernels" + app_and_args + config + "Accel-Sim-build"
                 ] = accelsim_build_match.group(1)
         f.close()
         
-        print(f'stat map: {stat_map}')
+        # print(f'stat map: {stat_map}')
 
         # Do a quick 10000-line reverse pass to make sure the simualtion thread finished
-        SIM_EXIT_STRING = "GPGPU-Sim: \*\*\* exit detected \*\*\*"
+        SIM_EXIT_STRING = r"GPGPU-Sim: \*\*\* exit detected \*\*\*"
         exit_success = False
         MAX_LINES = 10000
         BYTES_TO_READ = int(250 * 1024 * 1024)
@@ -363,9 +372,9 @@ for idx, app_and_args in enumerate(apps_and_args):
             if not options.ignore_failures:
                 continue
 
-        print(f'options.per_kernel: {options.per_kernel}')
+        # print(f'options.per_kernel: {options.per_kernel}')
         if not options.per_kernel:
-            print(f'not options')
+            # print(f'not options')
             if len(all_named_kernels[app_and_args]) == 0:
                 all_named_kernels[app_and_args].append("final_kernel")
             BYTES_TO_READ = int(250 * 1024 * 1024)
@@ -410,7 +419,7 @@ for idx, app_and_args in enumerate(apps_and_args):
                 # If we ended simulation due to too many insn - ignore the last kernel launch, as it is no complete.
                 # Note: This only appies if we are doing kernel-by-kernel stats
                 last_kernel_break = re.match(
-                    "GPGPU-Sim: \*\* break due to reaching the maximum cycles \(or instructions\) \*\*",
+                    r"GPGPU-Sim: \*\* break due to reaching the maximum cycles \(or instructions\) \*\*",
                     line,
                 )
                 if last_kernel_break:
@@ -428,8 +437,7 @@ for idx, app_and_args in enumerate(apps_and_args):
                             del stat_map[
                                 current_kernel + app_and_args + config + stat_name
                             ]
-
-                kernel_match = re.match("kernel_name\s+=\s+(.*)", line)
+                kernel_match = re.match(r"kernel_name\s+=\s+(.*)", line)
                 if kernel_match:
                     last_kernel = current_kernel
                     current_kernel = kernel_match.group(1).strip()
@@ -490,8 +498,8 @@ for idx, app_and_args in enumerate(apps_and_args):
 # to read from the beginning not the end
 # if options.per_kernel and not options.kernel_instance:
 #    stats_yaml['collect'].append("k-count")
-print(f'stat map: {stat_map}')
-print(f'stat found: {stat_found}')
+# print(f'stat map: {stat_map}')
+# print(f'stat found: {stat_found}')
 
 # Print any stats that do not make sense on a per-kernel basis ever (like GPGPU-Sim Build)
 all_kernels = {}

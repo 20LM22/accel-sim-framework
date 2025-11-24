@@ -43,6 +43,7 @@ import datetime
 import yaml
 import common
 import json
+import uuid
 
 this_directory = os.path.dirname(os.path.realpath(__file__)) + "/"
 # This function will pull the SO name out of the shared object,
@@ -125,9 +126,15 @@ class ConfigurationSpec:
                 self.setup_run_directory(
                     full_data_dir, this_run_dir, data_dir, appargs_run_subdir
                 )
+                
+                # TODO: trying to make the test.submit file like the slurm.sim
+                uuid_var = uuid.uuid4()
+                self.text_replace_test_submit(
+                    full_data_dir, this_run_dir, benchmark, cuda_version, args, simdir, full_exec_dir, build_handle, mem_usage, cuda_file, uuid_var, options.launch_name
+                )
 
                 self.text_replace_torque_sim(
-                    full_data_dir, this_run_dir, benchmark, cuda_version, args, simdir, full_exec_dir, build_handle, mem_usage, cuda_file
+                    full_data_dir, this_run_dir, benchmark, cuda_version, args, simdir, full_exec_dir, build_handle, mem_usage, cuda_file, uuid_var
                 )
                 
                 self.append_gpgpusim_config(
@@ -147,13 +154,25 @@ class ConfigurationSpec:
                     # torque_out_file = open(torque_out_filename, "w+")
                     saved_dir = os.getcwd()
                     os.chdir(this_run_dir)
-                    print(f'\n\n\n\n\n')
-                    print(f'this_run_dir: {this_run_dir}')
-                    print(f"slurm.sim: {os.path.join(this_run_dir, job_template)}")               
-
-                    result = subprocess.run(
-                        ["sbatch", "--wait", os.path.join(this_run_dir, job_template)]
-                    )
+                    # print(f'this_run_dir: {this_run_dir}')
+                    # print(f"slurm.sim: {os.path.join(this_run_dir, job_template)}")
+                    
+                    export_dict = {
+                        "benchmark": benchmark,
+                        "self.benchmark_args_subdirs[args]": self.benchmark_args_subdirs[args],
+                        "self.run_subdir": self.run_subdir, 
+                        "build_handle": build_handle,
+                        "options.launch_name": options.launch_name,
+                        "uuid_var": str(uuid_var)
+                    }
+                    
+                    sim_name = benchmark + "-" + self.benchmark_args_subdirs[args] + "." + build_handle + "_" + str(uuid_var)
+                    with open(f"{os.path.join(this_run_dir, f'export_dict_{sim_name}.json')}", "w") as f: # fix this --> it should live with .sim, not in scratch space
+                        json.dump(export_dict, f)   
+                    
+                    # result = subprocess.run(
+                    #     ["sbatch", "--wait", os.path.join(this_run_dir, job_template)]
+                    # )
                     
                     # if (
                     #     subprocess.call(
@@ -306,6 +325,41 @@ class ConfigurationSpec:
         if os.path.exists(os.path.join(this_directory, data_dir)):
             os.symlink(os.path.join(this_directory, data_dir), all_data_link)
 
+# replaces all the "REPLACE_*" strings in the .submit file
+    def text_replace_test_submit(
+        self,
+        full_run_dir,
+        this_run_dir,
+        benchmark,
+        cuda_version,
+        command_line_args,
+        libpath,
+        exec_dir,
+        gpgpusim_build_handle,
+        mem_usage,
+        cuda_file,
+        uuid_var,
+        launch_name
+    ):
+            
+        # do the text replacement for the .sim file
+        sim_name = benchmark + "-" + self.benchmark_args_subdirs[command_line_args] + "." +\
+                                gpgpusim_build_handle + "_" + str(uuid_var)
+        # Truncate long simulation file names
+        sim_name = sim_name[:200]
+        replacement_dict = {"NAME":sim_name,
+                            "SUBDIR":this_run_dir,
+                            "LAUNCH_NAME":launch_name
+                            }
+        
+        test_submit_text = open(this_directory + test_submit_template).read().strip()
+        for entry in replacement_dict:
+            test_submit_text = re.sub(
+                "REPLACE_" + entry, str(replacement_dict[entry]), test_submit_text
+            )
+        open(os.path.join(this_run_dir, test_submit_template), "w").write(test_submit_text)
+        # print(f"test submit file created: {os.path.join(this_run_dir, test_submit_template)}")
+
     # replaces all the "REPLACE_*" strings in the .sim file
     def text_replace_torque_sim(
         self,
@@ -318,7 +372,8 @@ class ConfigurationSpec:
         exec_dir,
         gpgpusim_build_handle,
         mem_usage,
-        cuda_file
+        cuda_file,
+        uuid_var
     ):
         # print(f'cuda file inside replace sim: {cuda_file}')
        
@@ -352,7 +407,7 @@ class ConfigurationSpec:
         
         if cuda_file != "":
             # print(f"are we getting here")
-            cuda_file = "nvcc -o " + exec_name + " " + cuda_file + " -arch=sm_80 -lcudart" # how to replace sm_80? make it based on config
+            cuda_file = "nvcc -o " + exec_name + " " + cuda_file + " -arch=sm_80 -lcudart" # compile cuda
         
         # print(f'now cuda is: {cuda_file}')
         # Test the existance of required env variables
@@ -384,7 +439,7 @@ class ConfigurationSpec:
 
         # do the text replacement for the .sim file
         sim_name = benchmark + "-" + self.benchmark_args_subdirs[command_line_args] + "." +\
-                                gpgpusim_build_handle
+                                gpgpusim_build_handle + "_" + str(uuid_var)
         # Truncate long simulation file names
         sim_name = sim_name[:200]
         replacement_dict = {"NAME":sim_name,
@@ -411,7 +466,7 @@ class ConfigurationSpec:
         exec_line = torque_text.splitlines()[-1]
         justrunfile = os.path.join(this_run_dir , "justrun.sh")
         # open(justrunfile, 'w').write(exec_name + " " + txt_args + "\n")
-        open(justrunfile, 'w').write(exec_name + " " + txt_args + " | tee gpgpu-sim-out_`date '+%b_%d_%H:%M.%S'`.txt")
+        open(justrunfile, 'w').write(exec_name + ".ptx " + txt_args + " | tee gpgpu-sim-out_`date '+%b_%d_%H:%M.%S'`.txt")
         os.chmod(justrunfile, 0o744)
 
     # replaces all the "REPLACE_*" strings in the gpgpusim.config file
@@ -449,9 +504,62 @@ class ConfigurationSpec:
                 os.path.join("$ACCELSIM_ROOT", cfgsubdir, "trace.config")
             )
             config_text += open(accelsim_cfg).read()
-
+            
+        # TODO: if it's an A100 fit these parts of the config
+        # print(f'self.configle: {self.config_file}')
+        if "A100" in self.config_file:
+            # print(f"lkfdslsjlsfslfsfjsfslkfslfksflsdfs")
+            config_text = config_text.replace(
+                "# -gpgpu_tex_cache:l1 N:4:128:256,L:R:m:N:L,T:512:8,128:2",
+                "-gpgpu_tex_cache:l1 N:1:1:1,L:R:m:N:L,T:1:1,1:1",
+            )
+            
+            config_text = config_text.replace(
+                "-gpgpu_ptx_sim_mode 1",
+                "-gpgpu_ptx_sim_mode 0"
+            )
+            
+            config_text = config_text.replace(
+                "gpgpu_gmem_skip_L1D 0",
+                "gpgpu_gmem_skip_L1D 1"
+            )
+            
+            config_text = config_text.replace(
+                "-gpgpu_n_clusters 108",
+                "-gpgpu_n_clusters 1"
+            )
+            
+            config_text = config_text.replace( # this is a big problem
+                "-gpgpu_shader_core_pipeline 2048:32",
+                "-gpgpu_shader_core_pipeline 1024:32"
+            )
+            
+            config_text = config_text.replace(
+                "-gpgpu_shmem_size 167936",
+                "-gpgpu_shmem_size 1048576" 
+            )
+            
+            config_text = config_text.replace(
+                "-gpgpu_shmem_sizeDefault 167936",
+                "-gpgpu_shmem_sizeDefault 5000000"
+            )
+                        
+            config_text = config_text.replace(
+                "-gpgpu_shmem_per_block 49152",
+                "-gpgpu_shmem_per_block 131072"
+            )
+                   
+            config_text = config_text.replace( # this is totally fine
+                "-gpgpu_shader_registers 65536\n-gpgpu_registers_per_block 65536",
+                "-gpgpu_shader_registers 100000\n-gpgpu_registers_per_block 25000"
+            )     
+               
+            config_text = config_text.replace(
+                "-gpgpu_occupancy_sm_number 80",
+                "-gpgpu_occupancy_sm_number 32768"
+            )           
+                                       
         open(os.path.join(this_run_dir, "gpgpusim.config"), "w").write(config_text)
-
 
 # -----------------------------------------------------------
 # main script start
@@ -518,6 +626,9 @@ common.load_defined_yamls()
 # Test for the existance of a cluster management system
 job_submit_call = None
 job_template = None
+
+test_submit_template = 'test.submit'
+
 if options.launcher != "":
     if options.launcher == "qsub":
         job_submit_call = options.launcher

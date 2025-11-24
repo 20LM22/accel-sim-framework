@@ -13,14 +13,86 @@ mmul:
   exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
   data_dirs: "$GPUAPPS_ROOT/data_dirs/cuda/mmul/"
   execs:
-    - mmul5:
-        - args: 
-          accel-sim-mem: 32G
-          cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul5.cu" 
-    - mmul10:
-        - args: 
-          accel-sim-mem: 32G
-          cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul10.cu"
+    # - mmul_diff_tile_size_64_load_SM_first_concurrent:
+    #   - args: 
+    #     accel-sim-mem: 32G
+    #     cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_load_SM_first_concurrent.cu" 
+    - mmul_diff_tile_size_128_all_c:
+      - args: 
+        accel-sim-mem: 32G
+        cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_128_all_c.cu" 
+    
+    # - mmul_diff_tile_size_64_one_c:
+    #   - args: 
+    #     accel-sim-mem: 32G
+    #     cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_one_c.cu" 
+    # - mmul_diff_tile_size_64_many_smem_iter:
+    #   - args: 
+    #     accel-sim-mem: 32G
+    #     cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64_many_smem_iter.cu" 
+    
+    # - mmul_diff_tile_size_16:
+    #     - args: 
+    #       accel-sim-mem: 32G
+    #       cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_16.cu" 
+    # - mmul_diff_tile_size_32:
+    #     - args: 
+    #       accel-sim-mem: 32G
+    #       cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_32.cu" 
+    # - mmul_diff_tile_size_64:
+    #     - args: 
+    #       accel-sim-mem: 32G
+    #       cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_64.cu" 
+    # - mmul_diff_tile_size_128:
+    #     - args: 
+    #       accel-sim-mem: 32G
+    #       cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_128.cu" 
+    # - mmul_diff_tile_size_256:
+    #     - args: 
+    #       accel-sim-mem: 32G
+    #       cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul_diff_tile_size_256.cu" 
+
+    # - mmul1_tiles_9:
+    #     - args: 
+    #       accel-sim-mem: 32G
+    #       cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul1_tiles_9.cu" 
+    # - mmul4_tiles_9:
+    #     - args: 
+    #       accel-sim-mem: 32G
+    #       cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul4_tiles_9.cu" 
+    # - mmul16_tiles_9:
+    #     - args: 
+    #       accel-sim-mem: 32G
+    #       cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul16_tiles_9.cu"
+    # - mmul4_tiles:
+    #     - args: 
+    #       accel-sim-mem: 32G
+    #       cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul4_tiles.cu" 
+    # - mmul5_tiles:
+    #     - args: 
+    #       accel-sim-mem: 32G
+    #       cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul5_tiles.cu" 
+    # - mmul6_tiles:
+    #     - args: 
+    #       accel-sim-mem: 32G
+    #       cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul6_tiles.cu"
+
+#     - mmul7:
+#         - args: 
+#           accel-sim-mem: 32G
+#           cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul7.cu"
+#     - mmul8:
+#         - args: 
+#           accel-sim-mem: 32G
+#           cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul8.cu"          
+#     - mmul9:
+#         - args: 
+#           accel-sim-mem: 32G
+#           cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul9.cu"    
+#     - mmul10:
+#         - args: 
+#           accel-sim-mem: 32G
+#           cuda-file: "/scratch/gpfs/WENTZLAF/lm4677/gpu-app-collection/src/cuda/mmul/mmul10.cu"    
 
 # Rodinia 2.0 implemented with a pass/fail functional test
 # rodinia_2.0-ft:
@@ -31,6 +103,7 @@ mmul:
 #         - bfs-rodinia-2.0-ft:
 #             - args:  ./data/graph4096.txt ./data/graph4096-result.txt
 #               accel-sim-mem: 1G
+#               cuda-file: ""
         # - backprop-rodinia-2.0-ft:
         #     - args:  4096 ./data/result-4096.txt
         #       accel-sim-mem: 1G
